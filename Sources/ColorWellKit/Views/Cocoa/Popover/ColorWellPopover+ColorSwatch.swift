@@ -260,7 +260,7 @@ extension ColorWellPopover {
                     // color, to match the border color of opaque swatches
                     Path(cgPath: clippingPath)
                         .stroke(
-                            with: displayColor.withAlphaComponent(1), 
+                            with: displayColor.withAlphaComponent(1),
                             lineWidth: borderWidth
                         )
                 }
