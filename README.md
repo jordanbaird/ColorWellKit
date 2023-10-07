@@ -1,5 +1,9 @@
 # ColorWellKit
 
+[![Continuous Integration][ci-badge]](https://github.com/jordanbaird/ColorWellKit/actions/workflows/test.yml)
+[![Release][release-badge]](https://github.com/jordanbaird/ColorWellKit/releases/latest)
+[![License][license-badge]](LICENSE)
+
 A versatile alternative to `NSColorWell` for Cocoa and `ColorPicker` for SwiftUI.
 
 <div align="center">
@@ -26,7 +30,7 @@ Add the following dependency to your `Package.swift` file:
 
 ### SwiftUI
 
-Create a `ColorWellView` and add it to your view hierarchy. There are a wide range of initializers, as well as several modifiers to choose from, allowing you to set the color well's color, label, and style.
+Create a `ColorWellView` and add it to your view hierarchy. There are a wide range of initializers and modifiers to choose from, allowing you to set the color well's color, label, and style.
 
 ```swift
 import SwiftUI
@@ -76,3 +80,7 @@ class ContentViewController: NSViewController {
 ## License
 
 ColorWellKit is available under the [MIT license](LICENSE).
+
+[ci-badge]: https://img.shields.io/github/actions/workflow/status/jordanbaird/ColorWellKit/test.yml?branch=main&style=flat-square
+[release-badge]: https://img.shields.io/github/v/release/jordanbaird/ColorWellKit?style=flat-square
+[license-badge]: https://img.shields.io/github/license/jordanbaird/ColorWellKit?style=flat-square
