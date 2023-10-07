@@ -18,6 +18,7 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v3
+    - uses: swift-actions/setup-swift@v1
     - name: Check Swift Version
       run: swift --version
     - name: Run Tests
