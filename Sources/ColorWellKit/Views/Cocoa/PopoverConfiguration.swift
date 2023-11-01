@@ -164,9 +164,9 @@ extension ColorWell {
 
         // MARK: Instance Methods
 
-        func columnAndRowCounts(forSwatchCount swatchCount: Int) -> (columnCount: Double, rowCount: Int) {
+        func computeColumnAndRowCounts(forSwatchCount swatchCount: Int) -> (columnCount: Int, rowCount: Int) {
             let swatchCountDbl = Double(swatchCount)
-            let columnCount: Double = {
+            let columnCountDbl: Double = {
                 switch layout.kind {
                 case let .grid(columnCount, _, _, _):
                     if let columnCount {
@@ -191,23 +191,24 @@ extension ColorWell {
                 }
             }()
 
-            let rowCount = Int((swatchCountDbl / columnCount).rounded(.up))
+            let rowCount = Int((swatchCountDbl / columnCountDbl).rounded(.up))
+            let columnCount = Int(columnCountDbl)
             return (columnCount, rowCount)
         }
 
-        func columnCount() -> Int {
-            Int(columnAndRowCounts(forSwatchCount: colors.count).columnCount)
+        func computeColumnCount() -> Int {
+            computeColumnAndRowCounts(forSwatchCount: colors.count).columnCount
         }
 
-        func rowCount() -> Int {
-            columnAndRowCounts(forSwatchCount: colors.count).rowCount
+        func computeRowCount() -> Int {
+            computeColumnAndRowCounts(forSwatchCount: colors.count).rowCount
         }
 
         func computeSwatchSize() -> NSSize {
             if let swatchSize {
                 return swatchSize
             }
-            let rowCount = rowCount()
+            let rowCount = computeRowCount()
             if rowCount < 6 {
                 return NSSize(width: 30, height: 30)
             }

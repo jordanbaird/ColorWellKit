@@ -160,7 +160,7 @@ extension ColorWellPopover.LayoutView {
             let (columnCount, topRowSpacing) = {
                 switch configuration.layout.kind {
                 case let .grid(_, _, _, topRowSpacing):
-                    return (configuration.columnCount(), topRowSpacing)
+                    return (configuration.computeColumnCount(), topRowSpacing)
                 }
             }()
 
