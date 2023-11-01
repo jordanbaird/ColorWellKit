@@ -49,17 +49,17 @@ extension ColorWellPopover {
                 switch style {
                 case .standard, .expanded:
                     return (
-                        leading: configuration.layout.padding.leading.max ?? fallbackPadding,
-                        trailing: configuration.layout.padding.trailing.max ?? fallbackPadding,
-                        top: configuration.layout.padding.top.max ?? fallbackPadding,
-                        bottom: configuration.layout.padding.bottom.max ?? fallbackPadding
+                        leading: configuration.contentLayout.padding.leading.max ?? fallbackPadding,
+                        trailing: configuration.contentLayout.padding.trailing.max ?? fallbackPadding,
+                        top: configuration.contentLayout.padding.top.max ?? fallbackPadding,
+                        bottom: configuration.contentLayout.padding.bottom.max ?? fallbackPadding
                     )
                 case .swatches:
                     return (
-                        leading: configuration.layout.padding.leading.min ?? fallbackPadding,
-                        trailing: configuration.layout.padding.trailing.min ?? fallbackPadding,
-                        top: configuration.layout.padding.top.min ?? fallbackPadding,
-                        bottom: configuration.layout.padding.bottom.min ?? fallbackPadding
+                        leading: configuration.contentLayout.padding.leading.min ?? fallbackPadding,
+                        trailing: configuration.contentLayout.padding.trailing.min ?? fallbackPadding,
+                        top: configuration.contentLayout.padding.top.min ?? fallbackPadding,
+                        bottom: configuration.contentLayout.padding.bottom.min ?? fallbackPadding
                     )
                 }
             }

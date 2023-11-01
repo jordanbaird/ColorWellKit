@@ -100,7 +100,7 @@ extension ColorWellPopover.LayoutView {
         init(colorWell: ColorWell, configuration: Configuration) {
             self.selectionIndicator = SelectionIndicator(configuration: configuration)
             super.init(frame: .zero)
-            switch configuration.layout.kind {
+            switch configuration.contentLayout.kind {
             case .grid(_, let horizontalSpacing, let verticalSpacing, _):
                 self.rowSpacing = verticalSpacing ?? 1
                 self.columnSpacing = horizontalSpacing ?? 1
@@ -158,7 +158,7 @@ extension ColorWellPopover.LayoutView {
             swatches.removeAll()
 
             let (columnCount, topRowSpacing) = {
-                switch configuration.layout.kind {
+                switch configuration.contentLayout.kind {
                 case let .grid(_, _, _, topRowSpacing):
                     return (configuration.computeColumnCount(), topRowSpacing)
                 }

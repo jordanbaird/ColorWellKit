@@ -4,13 +4,13 @@
 
 ### Creating a popover configuration
 
-- ``init(colors:layout:swatchSize:swatchShape:borderEffect:)``
-- ``init(colorList:layout:swatchSize:swatchShape:borderEffect:)``
+- ``init(colors:contentLayout:swatchSize:swatchShape:borderEffect:)``
+- ``init(colorList:contentLayout:swatchSize:swatchShape:borderEffect:)``
 
 ### Accessing a configuration's values
 
 - ``colors``
-- ``layout-swift.property``
+- ``contentLayout-swift.property``
 - ``swatchSize``
 - ``swatchShape-swift.property``
 - ``borderEffect``
@@ -23,6 +23,6 @@
 
 ### Supporting Types
 
-- ``Layout-swift.struct``
+- ``ContentLayout-swift.struct``
 - ``SwatchShape-swift.struct``
 - ``SwatchBorderEffect``
