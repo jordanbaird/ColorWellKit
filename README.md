@@ -13,7 +13,7 @@ A versatile alternative to `NSColorWell` for Cocoa and `ColorPicker` for SwiftUI
     <img src="Sources/ColorWellKit/Documentation.docc/Resources/color-well-with-popover-light.png" style="width:37%">
 </div>
 
-ColorWellKit is designed to mimic the appearance and behavior of the color well designs introduced in macOS 13 Ventura, ideal for use in apps that are unable to target the latest SDK. While a central goal of ColorWellKit is to maintain a similar look and behave in a similar way to Apple's design, it is not intended to be an exact clone. There are a number of subtle design differences ranging from the way system colors are handled to the size of the drop shadow. However, in practice, there are very few notable differences:
+ColorWellKit is designed to mimic the appearance and behavior of the color well designs introduced in macOS 13 Ventura, ideal for use in apps that are unable to target the latest SDK. While a central goal of ColorWellKit is to maintain a similar look and behave in a similar way to Apple's design, it is not intended to be an exact clone. There are a number of subtle design differences ranging from the way system colors are handled to the size of the drop shadow. In practice, there are very few notable differences:
 
 <div align="center">
     <img src="Sources/ColorWellKit/Documentation.docc/Resources/design-comparison-dark.png" style="width:49%">
@@ -41,14 +41,14 @@ import SwiftUI
 import ColorWellKit
 
 struct ContentView: View {
-    @Binding var fontColor: Color
+    @Binding var textColor: Color
 
     var body: some View {
         VStack {
-            ColorWellView("Font Color", selection: $fontColor)
+            ColorWellView("Text Color", selection: $textColor)
                 .colorWellStyle(.expanded)
 
-            MyCustomTextEditor(fontColor: fontColor)
+            MyCustomTextEditor(textColor: $textColor)
         }
     }
 }
@@ -56,27 +56,25 @@ struct ContentView: View {
 
 ### Cocoa
 
-Create a `ColorWell` using one of the available initializers. Respond to color changes using your preferred design pattern.
+Create a `ColorWell` using one of the available initializers, or use an `IBOutlet` to create a connection to a Storyboard or NIB file. Respond to color changes using your preferred design pattern.
 
 ```swift
 import Cocoa
 import ColorWellKit
 
-class ContentViewController: NSViewController {
-    @IBOutlet var textControls: NSStackView!
-    @IBOutlet var textEditor: MyCustomNSTextEditor!
-
-    private var colorObservation: NSKeyValueObservation?
+class ViewController: NSViewController {
+    @IBOutlet var colorWell: ColorWell!
+    @IBOutlet var textEditor: NSTextView!
 
     override func viewDidLoad() {
-        let colorWell = ColorWell(style: .expanded)
-        colorWell.color = textEditor.fontColor
-
-        colorObservation = colorWell.observe(\.color) { colorWell, _ in
-            textEditor.fontColor = colorWell.color
+        colorWell.style = .expanded
+        if let textColor = textEditor.textColor {
+            colorWell.color = textColor
         }
+    }
 
-        textControls.addArrangedSubview(colorWell)
+    @IBAction func updateTextColor(sender: ColorWell) {
+        textEditor.textColor = sender.color
     }
 }
 ```
