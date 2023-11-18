@@ -47,14 +47,14 @@ extension ColorWellPopover {
 
             let padding = with(colorWell.style) { style in
                 switch style {
-                case .standard, .expanded:
+                case .default, .expanded:
                     return (
                         leading: configuration.contentLayout.padding.leading.max ?? fallbackPadding,
                         trailing: configuration.contentLayout.padding.trailing.max ?? fallbackPadding,
                         top: configuration.contentLayout.padding.top.max ?? fallbackPadding,
                         bottom: configuration.contentLayout.padding.bottom.max ?? fallbackPadding
                     )
-                case .swatches:
+                case .minimal:
                     return (
                         leading: configuration.contentLayout.padding.leading.min ?? fallbackPadding,
                         trailing: configuration.contentLayout.padding.trailing.min ?? fallbackPadding,

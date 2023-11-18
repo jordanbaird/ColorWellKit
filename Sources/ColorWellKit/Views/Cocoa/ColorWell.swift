@@ -48,7 +48,7 @@ public class ColorWell: _ColorWellBaseControl {
 
     /// The action to perform when the color area of the color well is pressed.
     ///
-    /// By default, color wells with the ``Style-swift.enum/swatches`` or
+    /// By default, color wells with the ``Style-swift.enum/minimal`` or
     /// ``Style-swift.enum/expanded`` style display a popover with a grid of
     /// color swatches when the color area is pressed. If you specify a value
     /// for this property and the ``secondaryTarget`` property, clicks inside
@@ -58,7 +58,7 @@ public class ColorWell: _ColorWellBaseControl {
     /// The target object that defines the action to perform when the color
     /// area of the color well is pressed.
     ///
-    /// By default, color wells with the ``Style-swift.enum/swatches`` or
+    /// By default, color wells with the ``Style-swift.enum/minimal`` or
     /// ``Style-swift.enum/expanded`` style display a popover with a grid of
     /// color swatches when the color area is pressed. If you specify a value
     /// for this property and the ``secondaryAction`` property, clicks inside

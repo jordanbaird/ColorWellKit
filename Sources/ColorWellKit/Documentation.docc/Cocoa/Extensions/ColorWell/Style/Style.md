@@ -4,10 +4,15 @@
 
 ### Getting the available styles
 
-- ``standard``
-- ``swatches``
+- ``default``
+- ``minimal``
 - ``expanded``
 
 ### Creating a style from a raw value
 
 - ``init(rawValue:)``
+
+### Deprecated styles
+
+- ``standard``
+- ``swatches``

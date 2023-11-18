@@ -20,7 +20,7 @@ struct TextFormatter: View {
 }
 ```
 
-![Two color wells, both displayed in the standard style](standard-style)
+![Two color wells, both displayed in the default style](default-style)
 
 ### Styling color wells
 

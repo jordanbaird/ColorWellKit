@@ -6,10 +6,10 @@ If the specified raw value does not correspond to any of the existing color well
 
 ```swift
 print(Style(rawValue: 0))
-// Prints "Optional(Style.standard)"
+// Prints "Optional(Style.default)"
 
 print(Style(rawValue: 1))
-// Prints "Optional(Style.swatches)"
+// Prints "Optional(Style.minimal)"
 
 print(Style(rawValue: 2))
 // Prints "Optional(Style.expanded)"

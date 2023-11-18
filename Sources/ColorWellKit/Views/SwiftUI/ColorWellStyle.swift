@@ -33,47 +33,47 @@ public protocol ColorWellStyle {
     var _configuration: _ColorWellStyleConfiguration { get }
 }
 
-// MARK: - StandardColorWellStyle
+// MARK: - DefaultColorWellStyle
 
 /// A color well style that displays the color well's color inside of a
 /// rectangular control, and toggles the system color panel when clicked.
 ///
-/// You can also use ``standard`` to construct this style.
-public struct StandardColorWellStyle: ColorWellStyle {
-    public let _configuration = _ColorWellStyleConfiguration(style: .standard)
+/// You can also use ``default`` to construct this style.
+public struct DefaultColorWellStyle: ColorWellStyle {
+    public let _configuration = _ColorWellStyleConfiguration(style: .default)
 
-    /// Creates an instance of the standard color well style.
+    /// Creates an instance of the default color well style.
     public init() { }
 }
 
-extension ColorWellStyle where Self == StandardColorWellStyle {
+extension ColorWellStyle where Self == DefaultColorWellStyle {
     /// A color well style that displays the color well's color inside of a
     /// rectangular control, and toggles the system color panel when clicked.
-    public static var standard: StandardColorWellStyle {
-        StandardColorWellStyle()
+    public static var `default`: DefaultColorWellStyle {
+        DefaultColorWellStyle()
     }
 }
 
-// MARK: - SwatchesColorWellStyle
+// MARK: - MinimalColorWellStyle
 
 /// A color well style that displays the color well's color inside of a
 /// rectangular control, and shows a popover containing the color well's
 /// swatch colors when clicked.
 ///
-/// You can also use ``swatches`` to construct this style.
-public struct SwatchesColorWellStyle: ColorWellStyle {
-    public let _configuration = _ColorWellStyleConfiguration(style: .swatches)
+/// You can also use ``minimal`` to construct this style.
+public struct MinimalColorWellStyle: ColorWellStyle {
+    public let _configuration = _ColorWellStyleConfiguration(style: .minimal)
 
-    /// Creates an instance of the swatches color well style.
+    /// Creates an instance of the minimal color well style.
     public init() { }
 }
 
-extension ColorWellStyle where Self == SwatchesColorWellStyle {
+extension ColorWellStyle where Self == MinimalColorWellStyle {
     /// A color well style that displays the color well's color inside of a
     /// rectangular control, and shows a popover containing the color well's
     /// swatch colors when clicked.
-    public static var swatches: SwatchesColorWellStyle {
-        SwatchesColorWellStyle()
+    public static var minimal: MinimalColorWellStyle {
+        MinimalColorWellStyle()
     }
 }
 
@@ -101,6 +101,58 @@ extension ColorWellStyle where Self == ExpandedColorWellStyle {
     /// color well's swatch colors.
     public static var expanded: ExpandedColorWellStyle {
         ExpandedColorWellStyle()
+    }
+}
+
+// MARK: - Deprecated -
+
+// MARK: - StandardColorWellStyle
+
+/// A color well style that displays the color well's color inside of a
+/// rectangular control, and toggles the system color panel when clicked.
+///
+/// You can also use ``standard`` to construct this style.
+@available(*, deprecated, renamed: "DefaultColorWellStyle")
+public struct StandardColorWellStyle: ColorWellStyle {
+    public let _configuration = _ColorWellStyleConfiguration(style: .standard)
+
+    /// Creates an instance of the standard color well style.
+    public init() { }
+}
+
+@available(*, deprecated)
+extension ColorWellStyle where Self == StandardColorWellStyle {
+    /// A color well style that displays the color well's color inside of a
+    /// rectangular control, and toggles the system color panel when clicked.
+    @available(*, deprecated, renamed: "default")
+    public static var standard: StandardColorWellStyle {
+        StandardColorWellStyle()
+    }
+}
+
+// MARK: - SwatchesColorWellStyle
+
+/// A color well style that displays the color well's color inside of a
+/// rectangular control, and shows a popover containing the color well's
+/// swatch colors when clicked.
+///
+/// You can also use ``swatches`` to construct this style.
+@available(*, deprecated, renamed: "MinimalColorWellStyle")
+public struct SwatchesColorWellStyle: ColorWellStyle {
+    public let _configuration = _ColorWellStyleConfiguration(style: .swatches)
+
+    /// Creates an instance of the swatches color well style.
+    public init() { }
+}
+
+@available(*, deprecated)
+extension ColorWellStyle where Self == SwatchesColorWellStyle {
+    /// A color well style that displays the color well's color inside of a
+    /// rectangular control, and shows a popover containing the color well's
+    /// swatch colors when clicked.
+    @available(*, deprecated, renamed: "minimal")
+    public static var swatches: SwatchesColorWellStyle {
+        SwatchesColorWellStyle()
     }
 }
 #endif

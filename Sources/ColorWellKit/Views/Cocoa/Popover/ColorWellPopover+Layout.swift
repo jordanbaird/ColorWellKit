@@ -32,7 +32,7 @@ extension ColorWellPopover {
             addRow(with: [swatchLayout])
             swatchLayout.assignLayoutViewIfAble(self)
 
-            if colorWell.style == .swatches {
+            if colorWell.style == .minimal {
                 let activationButton = NSButton(
                     title: "Show More Colors…",
                     target: self,

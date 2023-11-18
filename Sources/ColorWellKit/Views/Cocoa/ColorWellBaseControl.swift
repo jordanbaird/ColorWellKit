@@ -20,7 +20,7 @@ public class _ColorWellBaseControl: NSControl {
     struct BackingStorage {
         static let defaultColor = NSColor(red: 1, green: 1, blue: 1, alpha: 1)
 
-        static let defaultStyle = ColorWell.Style.standard
+        static let defaultStyle = ColorWell.Style.default
 
         static let defaultSize = NSSize(width: 38, height: 24)
 
@@ -144,7 +144,7 @@ public class _ColorWellBaseControl: NSControl {
         // this implementation returns the same sizes as NSColorWell
         var size = BackingStorage.defaultSize
         switch backingStorage.style {
-        case .standard, .swatches:
+        case .default, .minimal:
             switch controlSize {
             case .large:
                 size.height += 8

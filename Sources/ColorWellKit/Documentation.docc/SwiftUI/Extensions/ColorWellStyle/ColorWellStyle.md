@@ -4,12 +4,19 @@
 
 ### Types of styles
 
-- ``StandardColorWellStyle``
-- ``SwatchesColorWellStyle``
+- ``DefaultColorWellStyle``
+- ``MinimalColorWellStyle``
 - ``ExpandedColorWellStyle``
 
 ### Creating a color well style
 
+- ``ColorWellStyle/default``
+- ``ColorWellStyle/minimal``
+- ``ColorWellStyle/expanded``
+
+### Deprecated styles
+
+- ``StandardColorWellStyle``
+- ``SwatchesColorWellStyle``
 - ``ColorWellStyle/standard``
 - ``ColorWellStyle/swatches``
-- ``ColorWellStyle/expanded``

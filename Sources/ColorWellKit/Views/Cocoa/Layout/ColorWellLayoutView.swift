@@ -116,11 +116,11 @@ class ColorWellLayoutView: NSGridView {
             return
         }
         switch colorWell.style {
-        case .standard:
+        case .default:
             layer.shadowRadius = 0.5
             layer.shadowOpacity = 0.3
             layer.shadowOffset = NSSize(width: 0, height: -0.25)
-        case .swatches:
+        case .minimal:
             layer.shadowRadius = 0
             layer.shadowOpacity = 0
             layer.shadowOffset = NSSize(width: 0, height: 0)
@@ -139,10 +139,10 @@ class ColorWellLayoutView: NSGridView {
         }
         resetLayoutView()
         switch colorWell.style {
-        case .standard:
+        case .default:
             segments.append(ColorWellBorderedSwatchSegment(colorWell: colorWell))
             widthConstant = 0
-        case .swatches:
+        case .minimal:
             segments.append(ColorWellSinglePullDownSwatchSegment(colorWell: colorWell))
             widthConstant = 0
         case .expanded:
@@ -179,7 +179,7 @@ class ColorWellLayoutView: NSGridView {
             )
             .stroked(lineWidth: lineWidth)
             .nsBezierPath()
-        case .standard, .swatches:
+        case .default, .minimal:
             bezelPath = Path.fullColorWellPath(
                 rect: bounds.insetBy(lineWidth / 2),
                 controlSize: colorWell.controlSize
