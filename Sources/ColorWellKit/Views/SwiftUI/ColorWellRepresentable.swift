@@ -53,14 +53,29 @@ struct ColorWellRepresentable: NSViewRepresentable {
         override func computeIntrinsicContentSize(for controlSize: ControlSize) -> NSSize {
             var size = BackingStorage.defaultSize
             switch backingStorage.style {
-            case .default, .minimal:
+            case .default:
                 switch controlSize {
                 case .large:
                     size.width += 17
                     size.height += 5
                 case .regular:
                     size.width += 6
-                    size.height -= 1
+                case .small:
+                    size.width -= 5
+                    size.height -= 7
+                case .mini:
+                    size.width -= 9
+                    size.height -= 9
+                @unknown default:
+                    break
+                }
+            case .minimal:
+                switch controlSize {
+                case .large:
+                    size.width += 17
+                    size.height += 5
+                case .regular:
+                    size.width += 3
                 case .small:
                     size.width -= 5
                     size.height -= 7
@@ -80,9 +95,9 @@ struct ColorWellRepresentable: NSViewRepresentable {
                     break // no change
                 case .small:
                     size.width -= 8
-                    size.height -= 6
+                    size.height -= 7
                 case .mini:
-                    size.width -= 12
+                    size.width -= 9
                     size.height -= 9
                 @unknown default:
                     break
