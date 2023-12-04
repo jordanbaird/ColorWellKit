@@ -5,7 +5,7 @@
 
 import CoreGraphics
 
-extension ColorWell.PopoverConfiguration {
+extension ColorWell._PopoverConfiguration {
     /// A type that configures the layout of a popover's content view.
     public struct ContentLayout {
         // swiftlint:disable:next nesting
@@ -162,13 +162,13 @@ extension ColorWell.PopoverConfiguration {
 }
 
 // MARK: ContentLayout: Equatable
-extension ColorWell.PopoverConfiguration.ContentLayout: Equatable { }
+extension ColorWell._PopoverConfiguration.ContentLayout: Equatable { }
 
 // MARK: ContentLayout: Hashable
-extension ColorWell.PopoverConfiguration.ContentLayout: Hashable { }
+extension ColorWell._PopoverConfiguration.ContentLayout: Hashable { }
 
 // MARK: Deprecated
-extension ColorWell.PopoverConfiguration {
+extension ColorWell._PopoverConfiguration {
     /// A type that configures the layout of a popover's content view.
     @available(*, deprecated, renamed: "ContentLayout")
     public typealias Layout = ContentLayout

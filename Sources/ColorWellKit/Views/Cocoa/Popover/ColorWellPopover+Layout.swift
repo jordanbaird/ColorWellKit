@@ -72,7 +72,7 @@ extension ColorWellPopover.LayoutView {
     class SwatchLayout: NSGridView {
 
         // swiftlint:disable:next nesting
-        typealias Configuration = ColorWell.PopoverConfiguration
+        typealias Configuration = ColorWell._PopoverConfiguration
 
         // swiftlint:disable:next nesting
         typealias ColorSwatch = ColorWellPopover.ColorSwatch
@@ -255,7 +255,7 @@ extension ColorWellPopover.LayoutView.SwatchLayout {
     class SelectionIndicator: NSView {
 
         // swiftlint:disable:next nesting
-        typealias SwatchShape = ColorWell.PopoverConfiguration.SwatchShape
+        typealias SwatchShape = ColorWell._PopoverConfiguration.SwatchShape
 
         fileprivate var borderWidth: CGFloat = 0 {
             didSet {

@@ -18,6 +18,8 @@ public class ColorWell: _ColorWellBaseControl {
 
     private var isExclusive = true
 
+    var _popoverConfiguration: _PopoverConfiguration? = .default
+
     /// The color well's delegate object.
     public weak var delegate: ColorWellDelegate?
 
@@ -31,20 +33,6 @@ public class ColorWell: _ColorWellBaseControl {
     /// new group selection is created.
     @objc dynamic
     public var allowsMultipleSelection: Bool = true
-
-    /// A configuration that specifies the appearance of the user-selectable
-    /// swatches in the color well’s popover.
-    ///
-    /// If the ``secondaryAction`` and ``secondaryTarget`` properties have
-    /// been set, the action specified by those properties will be invoked
-    /// instead of the popover being shown.
-    ///
-    /// If this value is `nil`, and the secondary action and target properties
-    /// have not been set, the color well will not show its popover, and will
-    /// instead defer to opening the system color panel.
-    ///
-    /// The default value of this property is ``PopoverConfiguration-swift.struct/default``.
-    public var popoverConfiguration: PopoverConfiguration? = .default
 
     /// The action to perform when the color area of the color well is pressed.
     ///
@@ -215,7 +203,7 @@ public class ColorWell: _ColorWellBaseControl {
             return false
         }
         guard
-            let popoverConfiguration,
+            let popoverConfiguration = _popoverConfiguration,
             layoutView.segments.contains(segment)
         else {
             return false
@@ -287,5 +275,26 @@ public class ColorWell: _ColorWellBaseControl {
         while let block = deferredBlocks.popLast() {
             block(self)
         }
+    }
+}
+
+// MARK: Deprecated
+extension ColorWell {
+    /// A configuration that specifies the appearance of the user-selectable
+    /// swatches in the color well’s popover.
+    ///
+    /// If the ``secondaryAction`` and ``secondaryTarget`` properties have
+    /// been set, the action specified by those properties will be invoked
+    /// instead of the popover being shown.
+    ///
+    /// If this value is `nil`, and the secondary action and target properties
+    /// have not been set, the color well will not show its popover, and will
+    /// instead defer to opening the system color panel.
+    ///
+    /// The default value of this property is ``PopoverConfiguration-swift.struct/default``.
+    @available(*, deprecated, message: "Use the color well's 'secondaryAction' to create a custom popover.")
+    public var popoverConfiguration: PopoverConfiguration? {
+        get { _popoverConfiguration }
+        set { _popoverConfiguration = newValue }
     }
 }

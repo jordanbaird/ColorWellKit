@@ -13,7 +13,7 @@ private struct ColorWellStyleConfigurationKey: EnvironmentKey {
 
 @available(macOS 10.15, *)
 private struct ColorWellPopoverConfigurationKey: EnvironmentKey {
-    static let defaultValue = ColorWell.PopoverConfiguration.default
+    static let defaultValue = ColorWell._PopoverConfiguration.default
 }
 
 @available(macOS 10.15, *)
@@ -26,7 +26,7 @@ extension EnvironmentValues {
 
 @available(macOS 10.15, *)
 extension EnvironmentValues {
-    var colorWellPopoverConfiguration: ColorWell.PopoverConfiguration {
+    var colorWellPopoverConfiguration: ColorWell._PopoverConfiguration {
         get { self[ColorWellPopoverConfigurationKey.self] }
         set { self[ColorWellPopoverConfigurationKey.self] = newValue }
     }

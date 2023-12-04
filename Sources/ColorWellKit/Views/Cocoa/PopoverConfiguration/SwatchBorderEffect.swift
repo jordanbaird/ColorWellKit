@@ -5,7 +5,7 @@
 
 import AppKit
 
-extension ColorWell.PopoverConfiguration {
+extension ColorWell._PopoverConfiguration {
     /// A type that applies an effect to the border color of a swatch.
     public struct SwatchBorderEffect {
 
@@ -159,7 +159,7 @@ extension ColorWell.PopoverConfiguration {
 }
 
 // MARK: SwatchBorderEffect: Equatable
-extension ColorWell.PopoverConfiguration.SwatchBorderEffect: Equatable { }
+extension ColorWell._PopoverConfiguration.SwatchBorderEffect: Equatable { }
 
 // MARK: SwatchBorderEffect: Hashable
-extension ColorWell.PopoverConfiguration.SwatchBorderEffect: Hashable { }
+extension ColorWell._PopoverConfiguration.SwatchBorderEffect: Hashable { }

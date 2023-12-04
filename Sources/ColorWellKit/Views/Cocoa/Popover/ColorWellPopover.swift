@@ -7,7 +7,7 @@ import AppKit
 
 /// A popover that contains a grid of selectable color swatches.
 class ColorWellPopover: NSPopover {
-    typealias Configuration = ColorWell.PopoverConfiguration
+    typealias Configuration = ColorWell._PopoverConfiguration
 
     private weak var colorWell: ColorWell?
 

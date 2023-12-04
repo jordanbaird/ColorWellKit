@@ -5,7 +5,7 @@
 
 import CoreGraphics
 
-extension ColorWell.PopoverConfiguration {
+extension ColorWell._PopoverConfiguration {
     /// An algorithm that specifies the shape for swatches displayed inside
     /// a color well's popover.
     public struct SwatchShape {
@@ -115,7 +115,7 @@ extension ColorWell.PopoverConfiguration {
 }
 
 // MARK: SwatchShape: Equatable
-extension ColorWell.PopoverConfiguration.SwatchShape: Equatable { }
+extension ColorWell._PopoverConfiguration.SwatchShape: Equatable { }
 
 // MARK: SwatchShape: Hashable
-extension ColorWell.PopoverConfiguration.SwatchShape: Hashable { }
+extension ColorWell._PopoverConfiguration.SwatchShape: Hashable { }

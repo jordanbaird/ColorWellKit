@@ -8,7 +8,10 @@ import AppKit
 extension ColorWell {
     /// A type that specifies the appearance and behavior of
     /// a color well's popover.
-    public struct PopoverConfiguration {
+    @available(*, deprecated, message: "Use the color well's 'secondaryAction' to create a custom popover.")
+    public typealias PopoverConfiguration = _PopoverConfiguration
+
+    public struct _PopoverConfiguration {
         /// The colors that are displayed as swatches inside
         /// the popover.
         public var colors: [NSColor]
@@ -95,14 +98,14 @@ extension ColorWell {
             swatchSize: NSSize? = nil,
             swatchShape: SwatchShape = .rectangle,
             borderEffect: SwatchBorderEffect = .default
-        ) -> PopoverConfiguration {
+        ) -> Self {
             guard
                 let path = bundle.path(forResource: name, ofType: "clr"),
                 let colorList = NSColorList(name: name, fromFile: path)
             else {
                 preconditionFailure("Failed to load color list resource.")
             }
-            return PopoverConfiguration(
+            return Self(
                 colorList: colorList,
                 contentLayout: contentLayout,
                 swatchSize: swatchSize,
@@ -115,7 +118,7 @@ extension ColorWell {
         ///
         /// This configuration specifies a small grid of color swatches with 6
         /// columns of colors across the color spectrum.
-        public static let `default`: PopoverConfiguration = _loadColorListResource(
+        public static let `default`: Self = _loadColorListResource(
             name: "DefaultColors",
             bundle: .module,
             contentLayout: .grid(columnCount: 6).padding(minLength: 7.5, maxLength: 10),
@@ -126,7 +129,7 @@ extension ColorWell {
         /// A configuration that specifies a grid of color swatches with 12 columns
         /// of colors across the color spectrum, and a row of common colors across
         /// the top.
-        public static let standard: PopoverConfiguration = _loadColorListResource(
+        public static let standard: Self = _loadColorListResource(
             name: "StandardColors",
             bundle: .module,
             contentLayout: .grid(columnCount: 12, topRowSpacing: 4),
@@ -135,7 +138,7 @@ extension ColorWell {
 
         /// A configuration that specifies a single row of color swatches consisting
         /// of some of the most common colors.
-        public static let simple: PopoverConfiguration = {
+        public static let simple: Self = {
             let hexStrings = [
                 "FF0000", // red
                 "FF8000", // orange
@@ -153,7 +156,7 @@ extension ColorWell {
             let colors = hexStrings.compactMap { string in
                 NSColor(hexString: string)
             }
-            return PopoverConfiguration(
+            return Self(
                 colors: colors,
                 contentLayout: .grid(columnCount: 12, horizontalSpacing: 2.5),
                 swatchSize: NSSize(width: 20, height: 20),
@@ -221,7 +224,7 @@ extension ColorWell {
 }
 
 // MARK: PopoverConfiguration: Equatable
-extension ColorWell.PopoverConfiguration: Equatable {
+extension ColorWell._PopoverConfiguration: Equatable {
     public static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.colors == rhs.colors &&
         lhs.contentLayout == rhs.contentLayout &&
@@ -233,7 +236,7 @@ extension ColorWell.PopoverConfiguration: Equatable {
 }
 
 // MARK: PopoverConfiguration: Hashable
-extension ColorWell.PopoverConfiguration: Hashable {
+extension ColorWell._PopoverConfiguration: Hashable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(colors)
         hasher.combine(contentLayout)
@@ -245,7 +248,7 @@ extension ColorWell.PopoverConfiguration: Hashable {
 }
 
 // MARK: Deprecated
-extension ColorWell.PopoverConfiguration {
+extension ColorWell._PopoverConfiguration {
     /// The layout of the popover's content view.
     @available(*, deprecated, renamed: "contentLayout")
     public var layout: Layout {
