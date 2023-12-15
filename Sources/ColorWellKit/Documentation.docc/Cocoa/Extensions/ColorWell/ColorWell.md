@@ -15,10 +15,10 @@ Color wells provide an interface in your app for users to select custom colors. 
 
 - ``allowsMultipleSelection``
 - ``delegate``
-- ``popoverConfiguration-swift.property``
 - ``secondaryAction``
 - ``secondaryTarget``
 - ``style-swift.property``
+- ``swatchColors``
 
 ### Accessing the current color
 
@@ -34,5 +34,4 @@ Color wells provide an interface in your app for users to select custom colors. 
 ### Supporting Types
 
 - ``ColorWellDelegate``
-- ``PopoverConfiguration-swift.struct``
 - ``Style-swift.enum``

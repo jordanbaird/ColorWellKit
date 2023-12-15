@@ -11,8 +11,3 @@
 ### Creating a style from a raw value
 
 - ``init(rawValue:)``
-
-### Deprecated styles
-
-- ``standard``
-- ``swatches``
