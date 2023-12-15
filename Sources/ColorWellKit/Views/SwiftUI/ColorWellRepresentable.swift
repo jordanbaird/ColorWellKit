@@ -107,7 +107,7 @@ struct ColorWellRepresentable: NSViewRepresentable {
         }
     }
 
-    final class Coordinator: ColorWellDelegate {
+    final class BridgedColorWellDelegate: ColorWellDelegate {
         let representable: ColorWellRepresentable
 
         init(representable: ColorWellRepresentable) {
@@ -188,8 +188,8 @@ struct ColorWellRepresentable: NSViewRepresentable {
         }
     }
 
-    func makeCoordinator() -> Coordinator {
-        Coordinator(representable: self)
+    func makeCoordinator() -> BridgedColorWellDelegate {
+        BridgedColorWellDelegate(representable: self)
     }
 }
 #endif
