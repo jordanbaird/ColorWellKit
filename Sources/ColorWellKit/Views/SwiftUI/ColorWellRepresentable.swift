@@ -186,6 +186,13 @@ struct ColorWellRepresentable: NSViewRepresentable {
         {
             colorWell.swatchColors = swatchColors
         }
+        if let secondaryActionDelegate = context.environment.colorWellSecondaryActionDelegate {
+            colorWell.secondaryAction = #selector(secondaryActionDelegate.performAction)
+            colorWell.secondaryTarget = secondaryActionDelegate
+        } else {
+            colorWell.secondaryAction = nil
+            colorWell.secondaryTarget = nil
+        }
     }
 
     func makeCoordinator() -> BridgedColorWellDelegate {

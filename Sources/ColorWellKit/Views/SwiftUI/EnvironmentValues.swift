@@ -17,6 +17,11 @@ private struct ColorWellSwatchColorsKey: EnvironmentKey {
 }
 
 @available(macOS 10.15, *)
+private struct ColorWellSecondaryActionDelegateKey: EnvironmentKey {
+    static let defaultValue: ColorWellSecondaryActionDelegate? = nil
+}
+
+@available(macOS 10.15, *)
 extension EnvironmentValues {
     var colorWellStyleConfiguration: _ColorWellStyleConfiguration {
         get { self[ColorWellStyleConfigurationKey.self] }
@@ -29,6 +34,14 @@ extension EnvironmentValues {
     var colorWellSwatchColors: [NSColor]? {
         get { self[ColorWellSwatchColorsKey.self] }
         set { self[ColorWellSwatchColorsKey.self] = newValue }
+    }
+}
+
+@available(macOS 10.15, *)
+extension EnvironmentValues {
+    var colorWellSecondaryActionDelegate: ColorWellSecondaryActionDelegate? {
+        get { self[ColorWellSecondaryActionDelegateKey.self] }
+        set { self[ColorWellSecondaryActionDelegateKey.self] = newValue }
     }
 }
 #endif

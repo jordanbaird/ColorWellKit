@@ -58,6 +58,7 @@ If you apply the style to a container view, as in the example above, all the col
 
 - ``colorWellStyle(_:)``
 - ``colorWellSwatchColors(_:)``
+- ``colorWellSecondaryAction(_:)``
 
 ### Getting a color well's content view
 

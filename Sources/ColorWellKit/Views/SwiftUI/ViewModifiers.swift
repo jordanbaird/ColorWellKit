@@ -25,5 +25,16 @@ extension View {
             swatchColors = colors.map { NSColor($0) }
         }
     }
+
+    /// Sets an action to perform when the color areas of color wells
+    /// in this view are pressed.
+    ///
+    /// - Parameter action: An action to perform when the color area
+    ///   of the color well is pressed.
+    public func colorWellSecondaryAction(_ action: @escaping () -> Void) -> some View {
+        transformEnvironment(\.colorWellSecondaryActionDelegate) { delegate in
+            delegate = ColorWellSecondaryActionDelegate(action: action)
+        }
+    }
 }
 #endif
