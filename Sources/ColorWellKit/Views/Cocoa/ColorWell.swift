@@ -14,11 +14,24 @@ public class ColorWell: _ColorWellBaseControl {
 
     private static let popoverStorage = ObjectAssociation<ColorWellPopover>()
 
+    /// Hexadecimal strings used to construct the default colors shown
+    /// in a color well's popover.
+    private static let defaultHexStrings = [
+        "56C1FF", "72FDEA", "88FA4F", "FFF056", "FF968D", "FF95CA",
+        "00A1FF", "15E6CF", "60D937", "FFDA31", "FF644E", "FF42A1",
+        "0076BA", "00AC8E", "1FB100", "FEAE00", "ED220D", "D31876",
+        "004D80", "006C65", "017101", "F27200", "B51800", "970E53",
+        "FFFFFF", "D5D5D5", "929292", "5E5E5E", "000000",
+    ]
+
+    /// The default colors shown in a color well's popover.
+    private static let defaultSwatchColors = defaultHexStrings.compactMap { string in
+        NSColor(hexString: string)
+    }
+
     // MARK: Instance Properties
 
     private var isExclusive = true
-
-    var _popoverConfiguration: _PopoverConfiguration? = .default
 
     /// The color well's delegate object.
     public weak var delegate: ColorWellDelegate?
@@ -33,6 +46,44 @@ public class ColorWell: _ColorWellBaseControl {
     /// new group selection is created.
     @objc dynamic
     public var allowsMultipleSelection: Bool = true
+
+    /// The colors that will be shown as swatches in the color well's popover.
+    ///
+    /// The default values are defined according to the following hexadecimal
+    /// codes:
+    /// ```swift
+    /// [
+    ///     "56C1FF", "72FDEA", "88FA4F", "FFF056", "FF968D", "FF95CA",
+    ///     "00A1FF", "15E6CF", "60D937", "FFDA31", "FF644E", "FF42A1",
+    ///     "0076BA", "00AC8E", "1FB100", "FEAE00", "ED220D", "D31876",
+    ///     "004D80", "006C65", "017101", "F27200", "B51800", "970E53",
+    ///     "FFFFFF", "D5D5D5", "929292", "5E5E5E", "000000"
+    /// ]
+    /// ```
+    /// ![Default swatches](grid-view)
+    ///
+    /// You can add and remove values to change the swatches that are displayed.
+    ///
+    /// ```swift
+    /// let colorWell = ColorWell()
+    /// colorWell.swatchColors += [
+    ///     .systemPurple,
+    ///     .controlColor,
+    ///     .windowBackgroundColor
+    /// ]
+    /// colorWell.swatchColors.removeFirst()
+    /// ```
+    ///
+    /// Whatever value this property holds at the time the user opens the color
+    /// well's popover is the value that will be used to construct its swatches.
+    /// Each popover is constructed lazily, so if this value changes between
+    /// popover sessions, the next popover that is displayed will reflect the
+    /// changes.
+    ///
+    /// - Note: If the array is empty, the system color panel will be shown
+    ///   instead of the popover.
+    @objc dynamic
+    public var swatchColors = defaultSwatchColors
 
     /// The action to perform when the color area of the color well is pressed.
     ///
@@ -202,13 +253,10 @@ public class ColorWell: _ColorWellBaseControl {
             // a popover is already being shown
             return false
         }
-        guard
-            let popoverConfiguration = _popoverConfiguration,
-            layoutView.segments.contains(segment)
-        else {
+        guard layoutView.segments.contains(segment) else {
             return false
         }
-        let popover = ColorWellPopover(colorWell: self, configuration: popoverConfiguration)
+        let popover = ColorWellPopover(colorWell: self)
 
         // the popover is removed from storage when it is closed; we use the
         // presence of the popover to determine whether the next call to this
@@ -275,26 +323,5 @@ public class ColorWell: _ColorWellBaseControl {
         while let block = deferredBlocks.popLast() {
             block(self)
         }
-    }
-}
-
-// MARK: Deprecated
-extension ColorWell {
-    /// A configuration that specifies the appearance of the user-selectable
-    /// swatches in the color well’s popover.
-    ///
-    /// If the ``secondaryAction`` and ``secondaryTarget`` properties have
-    /// been set, the action specified by those properties will be invoked
-    /// instead of the popover being shown.
-    ///
-    /// If this value is `nil`, and the secondary action and target properties
-    /// have not been set, the color well will not show its popover, and will
-    /// instead defer to opening the system color panel.
-    ///
-    /// The default value of this property is ``PopoverConfiguration-swift.struct/default``.
-    @available(*, deprecated, message: "Use the color well's 'secondaryAction' to create a custom popover.")
-    public var popoverConfiguration: PopoverConfiguration? {
-        get { _popoverConfiguration }
-        set { _popoverConfiguration = newValue }
     }
 }

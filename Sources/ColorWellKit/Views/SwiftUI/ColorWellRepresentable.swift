@@ -180,8 +180,11 @@ struct ColorWellRepresentable: NSViewRepresentable {
         if colorWell.style != context.environment.colorWellStyleConfiguration.style {
             colorWell.style = context.environment.colorWellStyleConfiguration.style
         }
-        if colorWell._popoverConfiguration != context.environment.colorWellPopoverConfiguration {
-            colorWell._popoverConfiguration = context.environment.colorWellPopoverConfiguration
+        if
+            let swatchColors = context.environment.colorWellSwatchColors,
+            colorWell.swatchColors != swatchColors
+        {
+            colorWell.swatchColors = swatchColors
         }
     }
 

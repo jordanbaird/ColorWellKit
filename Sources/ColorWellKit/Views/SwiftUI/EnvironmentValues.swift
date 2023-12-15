@@ -12,8 +12,8 @@ private struct ColorWellStyleConfigurationKey: EnvironmentKey {
 }
 
 @available(macOS 10.15, *)
-private struct ColorWellPopoverConfigurationKey: EnvironmentKey {
-    static let defaultValue = ColorWell._PopoverConfiguration.default
+private struct ColorWellSwatchColorsKey: EnvironmentKey {
+    static let defaultValue: [NSColor]? = nil
 }
 
 @available(macOS 10.15, *)
@@ -26,9 +26,9 @@ extension EnvironmentValues {
 
 @available(macOS 10.15, *)
 extension EnvironmentValues {
-    var colorWellPopoverConfiguration: ColorWell._PopoverConfiguration {
-        get { self[ColorWellPopoverConfigurationKey.self] }
-        set { self[ColorWellPopoverConfigurationKey.self] = newValue }
+    var colorWellSwatchColors: [NSColor]? {
+        get { self[ColorWellSwatchColorsKey.self] }
+        set { self[ColorWellSwatchColorsKey.self] = newValue }
     }
 }
 #endif

@@ -23,10 +23,7 @@ class ColorWellPullDownSwatchSegment: ColorWellSwatchSegment {
                 // perform further checks
                 return true
             }
-            if let popoverConfiguration = colorWell._popoverConfiguration {
-                // we have a configuration; make sure it has colors
-                return !popoverConfiguration.colors.isEmpty
-            }
+            return !colorWell.swatchColors.isEmpty
         }
         return false
     }
