@@ -42,19 +42,3 @@ extension ColorWell.Style: CustomStringConvertible {
         }
     }
 }
-
-// MARK: - Deprecated
-extension ColorWell.Style {
-    /// The color well is displayed as a rectangular control that displays
-    /// the selected color and shows the system color panel when clicked.
-    @available(*, deprecated, renamed: "default")
-    public static let standard = Self.default
-
-    /// The color well is displayed as a rectangular control that displays
-    /// the selected color and shows a popover containing the color well's
-    /// swatch colors when clicked.
-    ///
-    /// The popover contains an option to show the system color panel.
-    @available(*, deprecated, renamed: "minimal")
-    public static let swatches = Self.minimal
-}
