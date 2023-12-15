@@ -15,11 +15,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "ColorWellKit",
-            resources: [
-                .copy("Resources/ColorLists/DefaultColors.clr"),
-                .copy("Resources/ColorLists/StandardColors.clr"),
-            ]
+            name: "ColorWellKit"
         ),
         .testTarget(
             name: "ColorWellKitTests",
