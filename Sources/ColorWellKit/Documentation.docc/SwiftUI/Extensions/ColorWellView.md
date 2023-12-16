@@ -46,7 +46,7 @@ When you use the ``ColorWellStyle/expanded`` or ``ColorWellStyle/minimal`` color
 ColorWellView(selection: $color)
     .colorWellSwatchColors([
         .red, .orange, .yellow, .green, .blue, .indigo,
-        .purple, .brown, .gray, .black, .white,
+        .purple, .brown, .gray, .white, .black,
     ])
     .colorWellStyle(.expanded)
 ```
