@@ -6,6 +6,6 @@
 
 - ``ColorWellStyle/minimal``
 
-### Creating a minimal color well style
+### Creating the style
 
 - ``init()``

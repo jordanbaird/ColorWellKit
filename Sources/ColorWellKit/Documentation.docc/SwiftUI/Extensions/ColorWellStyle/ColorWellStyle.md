@@ -2,7 +2,7 @@
 
 ## Topics
 
-### Types of styles
+### Color well style types
 
 - ``DefaultColorWellStyle``
 - ``MinimalColorWellStyle``

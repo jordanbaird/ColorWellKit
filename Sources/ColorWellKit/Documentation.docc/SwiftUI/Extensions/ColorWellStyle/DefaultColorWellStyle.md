@@ -6,6 +6,6 @@
 
 - ``ColorWellStyle/default``
 
-### Creating a default color well style
+### Creating the style
 
 - ``init()``

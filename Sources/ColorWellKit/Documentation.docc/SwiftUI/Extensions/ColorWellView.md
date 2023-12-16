@@ -38,6 +38,32 @@ If you apply the style to a container view, as in the example above, all the col
 
 ![Two color wells, both displayed in the expanded style](expanded-style)
 
+### Modifying the color selection popover
+
+When you use the ``ColorWellStyle/expanded`` or ``ColorWellStyle/minimal`` color well styles, the color well displays a popover with a grid of selectable color swatches. You can customize the colors that are displayed using the ``colorWellSwatchColors(_:)`` modifier:
+
+```swift
+ColorWellView(selection: $color)
+    .colorWellSwatchColors([
+        .red, .orange, .yellow, .green, .blue, .indigo,
+        .purple, .brown, .gray, .black, .white,
+    ])
+    .colorWellStyle(.expanded)
+```
+
+### Providing a custom secondary action
+
+As a control, the main action of a color well is always a color selection. By default, a color well's secondary action displays a popover with a grid of selectable color swatches, as described above. You can replace this behavior using the ``colorWellSecondaryAction(_:)`` modifier:
+
+```swift
+ColorWellView(selection: $color)
+    .colorWellSecondaryAction {
+        print("color well was pressed")
+    }
+```
+
+The example above will print the text "color well was pressed" to the console instead of showing the popover.
+
 ## Topics
 
 ### Creating a color well

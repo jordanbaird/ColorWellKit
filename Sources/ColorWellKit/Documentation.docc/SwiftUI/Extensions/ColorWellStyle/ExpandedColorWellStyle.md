@@ -6,6 +6,6 @@
 
 - ``ColorWellStyle/expanded``
 
-### Creating an expanded color well style
+### Creating the style
 
 - ``init()``
