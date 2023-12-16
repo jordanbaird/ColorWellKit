@@ -317,15 +317,6 @@ struct Path {
         path.stroke()
     }
 
-    /// Adds the path to the current context's clipping path.
-    func clip(using rule: CGPathFillRule = .winding) {
-        guard let context = NSGraphicsContext.current else {
-            return
-        }
-        context.cgContext.addPath(cgPath())
-        context.cgContext.clip(using: rule)
-    }
-
     /// Returns a stroked version of the path.
     func stroked(
         lineWidth: CGFloat,

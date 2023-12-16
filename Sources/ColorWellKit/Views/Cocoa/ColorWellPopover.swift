@@ -165,7 +165,7 @@ extension ColorWellPopover {
         }
 
         @discardableResult
-        private func addSwatchRow(with swatches: [ColorSwatch], swatchSize: NSSize) -> NSGridRow {
+        private func addSwatchRow(with swatches: [ColorSwatch]) -> NSGridRow {
             let row = addRow(with: swatches)
             self.swatches.append(contentsOf: swatches)
             return row
@@ -177,20 +177,17 @@ extension ColorWellPopover {
                 return
             }
 
-            let columnCount = 6
-            let swatchSize = NSSize(width: 37, height: 20)
-
             var currentSwatches = [ColorSwatch]()
 
             for color in colorWell.swatchColors {
-                if currentSwatches.count >= columnCount {
-                    addSwatchRow(with: currentSwatches, swatchSize: swatchSize)
+                if currentSwatches.count >= 6 {
+                    addSwatchRow(with: currentSwatches)
                     currentSwatches.removeAll()
                 }
                 currentSwatches.append(
                     ColorSwatch(
                         color: color,
-                        size: swatchSize,
+                        size: NSSize(width: 37, height: 20),
                         colorWell: colorWell,
                         swatchLayout: self
                     )
@@ -198,7 +195,7 @@ extension ColorWellPopover {
             }
 
             if !currentSwatches.isEmpty {
-                addSwatchRow(with: currentSwatches, swatchSize: swatchSize)
+                addSwatchRow(with: currentSwatches)
             }
         }
 
