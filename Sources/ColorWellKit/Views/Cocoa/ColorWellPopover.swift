@@ -242,7 +242,7 @@ extension ColorWellPopover {
             if selectionIndicator.superview !== self {
                 addSubview(selectionIndicator)
             }
-            selectionIndicator.frame = selectedSwatch.frame.insetBy(-1)
+            selectionIndicator.frame = selectedSwatch.frame
         }
 
         func swatch(at point: NSPoint) -> ColorSwatch? {
@@ -366,7 +366,7 @@ extension ColorWellPopover {
 
             context.compositingOperation = .multiply
 
-            color.drawSwatch(in: bounds)
+            (color.usingColorSpace(.displayP3) ?? color).drawSwatch(in: bounds)
             NSColor(white: 1 - color.averageBrightness, alpha: 0.3).setStroke()
             let path = NSBezierPath(rect: bounds.insetBy(1))
             path.lineWidth = 2
