@@ -68,16 +68,8 @@ extension ColorWell {
     ///     allows adjusting the selected color's opacity; the default is `true`.
     ///   - label: A view that describes the purpose of the color well.
     @available(macOS 11.0, *)
-    public init(
-        selection: Binding<Color>,
-        supportsOpacity: Bool = true,
-        @ViewBuilder label: () -> Label
-    ) {
-        self.init(
-            selection: selection.nsColor,
-            supportsOpacity: supportsOpacity,
-            label: label()
-        )
+    public init(selection: Binding<Color>, supportsOpacity: Bool = true, @ViewBuilder label: () -> Label) {
+        self.init(selection: selection.nsColor, supportsOpacity: supportsOpacity, label: label())
     }
 
     /// Creates a color well with a binding to a color value, with the provided
@@ -88,16 +80,8 @@ extension ColorWell {
     ///   - supportsOpacity: A Boolean value that indicates whether the color well
     ///     allows adjusting the selected color's opacity; the default is `true`.
     ///   - label: A view that describes the purpose of the color well.
-    public init(
-        selection: Binding<CGColor>,
-        supportsOpacity: Bool = true,
-        @ViewBuilder label: () -> Label
-    ) {
-        self.init(
-            selection: selection.nsColor,
-            supportsOpacity: supportsOpacity,
-            label: label()
-        )
+    public init(selection: Binding<CGColor>, supportsOpacity: Bool = true, @ViewBuilder label: () -> Label) {
+        self.init(selection: selection.nsColor, supportsOpacity: supportsOpacity, label: label())
     }
 }
 
@@ -112,11 +96,7 @@ extension ColorWell where Label == Never {
     ///     allows adjusting the selected color's opacity; the default is `true`.
     @available(macOS 11.0, *)
     public init(selection: Binding<Color>, supportsOpacity: Bool = true) {
-        self.init(
-            selection: selection.nsColor,
-            supportsOpacity: supportsOpacity,
-            label: nil
-        )
+        self.init(selection: selection.nsColor, supportsOpacity: supportsOpacity, label: nil)
     }
 
     /// Creates a color well with a binding to a color value.
@@ -126,11 +106,7 @@ extension ColorWell where Label == Never {
     ///   - supportsOpacity: A Boolean value that indicates whether the color well
     ///     allows adjusting the selected color's opacity; the default is `true`.
     public init(selection: Binding<CGColor>, supportsOpacity: Bool = true) {
-        self.init(
-            selection: selection.nsColor,
-            supportsOpacity: supportsOpacity,
-            label: nil
-        )
+        self.init(selection: selection.nsColor, supportsOpacity: supportsOpacity, label: nil)
     }
 }
 
@@ -149,16 +125,8 @@ extension ColorWell where Label == Text {
     ///   - supportsOpacity: A Boolean value that indicates whether the color well
     ///     allows adjusting the selected color's opacity; the default is `true`.
     @available(macOS 11.0, *)
-    public init<S: StringProtocol>(
-        _ title: S,
-        selection: Binding<Color>,
-        supportsOpacity: Bool = true
-    ) {
-        self.init(
-            selection: selection.nsColor,
-            supportsOpacity: supportsOpacity,
-            label: Text(title)
-        )
+    public init<S: StringProtocol>(_ title: S, selection: Binding<Color>, supportsOpacity: Bool = true) {
+        self.init(selection: selection.nsColor, supportsOpacity: supportsOpacity, label: Text(title))
     }
 
     /// Creates a color well with a binding to a color value, that generates its
@@ -169,16 +137,8 @@ extension ColorWell where Label == Text {
     ///   - selection: A binding to the color well's color.
     ///   - supportsOpacity: A Boolean value that indicates whether the color well
     ///     allows adjusting the selected color's opacity; the default is `true`.
-    public init<S: StringProtocol>(
-        _ title: S,
-        selection: Binding<CGColor>,
-        supportsOpacity: Bool = true
-    ) {
-        self.init(
-            selection: selection.nsColor,
-            supportsOpacity: supportsOpacity,
-            label: Text(title)
-        )
+    public init<S: StringProtocol>(_ title: S, selection: Binding<CGColor>, supportsOpacity: Bool = true) {
+        self.init(selection: selection.nsColor, supportsOpacity: supportsOpacity, label: Text(title))
     }
 
     // MARK: Generate Label From LocalizedStringKey
@@ -192,16 +152,8 @@ extension ColorWell where Label == Text {
     ///   - supportsOpacity: A Boolean value that indicates whether the color well
     ///     allows adjusting the selected color's opacity; the default is `true`.
     @available(macOS 11.0, *)
-    public init(
-        _ titleKey: LocalizedStringKey,
-        selection: Binding<Color>,
-        supportsOpacity: Bool = true
-    ) {
-        self.init(
-            selection: selection.nsColor,
-            supportsOpacity: supportsOpacity,
-            label: Text(titleKey)
-        )
+    public init(_ titleKey: LocalizedStringKey, selection: Binding<Color>, supportsOpacity: Bool = true) {
+        self.init(selection: selection.nsColor, supportsOpacity: supportsOpacity, label: Text(titleKey))
     }
 
     /// Creates a color well with a binding to a color value, that generates its
@@ -212,16 +164,8 @@ extension ColorWell where Label == Text {
     ///   - selection: A binding to the color well's color.
     ///   - supportsOpacity: A Boolean value that indicates whether the color well
     ///     allows adjusting the selected color's opacity; the default is `true`.
-    public init(
-        _ titleKey: LocalizedStringKey,
-        selection: Binding<CGColor>,
-        supportsOpacity: Bool = true
-    ) {
-        self.init(
-            selection: selection.nsColor,
-            supportsOpacity: supportsOpacity,
-            label: Text(titleKey)
-        )
+    public init(_ titleKey: LocalizedStringKey, selection: Binding<CGColor>, supportsOpacity: Bool = true) {
+        self.init(selection: selection.nsColor, supportsOpacity: supportsOpacity, label: Text(titleKey))
     }
 }
 #endif
