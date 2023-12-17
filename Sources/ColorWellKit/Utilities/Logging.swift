@@ -14,7 +14,7 @@ private let subsystem: String = {
     return "\(bundleIdentifier).\(packageName)"
 }()
 
-/// A value that the logging system uses to filter related log messages.
+/// A value that the logging system uses to filter log messages.
 struct LogCategory: RawRepresentable {
     let rawValue: String
     let log: OSLog
@@ -27,10 +27,10 @@ struct LogCategory: RawRepresentable {
 
 extension LogCategory {
     /// The main log category.
-    static let main      = LogCategory(rawValue: "main")
+    static let main = LogCategory(rawValue: "main")
 
     /// The log category to use for the `ColorWellPopover` type.
-    static let popover   = LogCategory(rawValue: "ColorWellPopover")
+    static let popover = LogCategory(rawValue: "ColorWellPopover")
 
     /// The log category to use for the `ColorComponents` type.
     static let components = LogCategory(rawValue: "ColorComponents")

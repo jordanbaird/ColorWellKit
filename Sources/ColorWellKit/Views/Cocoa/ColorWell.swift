@@ -10,8 +10,6 @@ public class ColorWell: _ColorWellBaseControl {
 
     // MARK: Static Properties
 
-    private static let exclusivityLock = NSRecursiveLock()
-
     private static let popoverStorage = ObjectAssociation<ColorWellPopover>()
 
     /// Hexadecimal strings used to construct the default colors shown
@@ -30,6 +28,8 @@ public class ColorWell: _ColorWellBaseControl {
     }
 
     // MARK: Instance Properties
+
+    private let exclusivityLock = NSRecursiveLock()
 
     private var isExclusive = true
 
@@ -218,12 +218,12 @@ public class ColorWell: _ColorWellBaseControl {
         _ isExclusive: @autoclosure () -> Bool,
         body: () throws -> T
     ) rethrows -> T {
-        Self.exclusivityLock.lock()
+        exclusivityLock.lock()
         let cachedIsExclusive = self.isExclusive
         self.isExclusive = isExclusive()
         defer {
             self.isExclusive = cachedIsExclusive
-            Self.exclusivityLock.unlock()
+            exclusivityLock.unlock()
         }
         return try body()
     }

@@ -32,16 +32,12 @@ enum Corner {
 
     /// Returns the point in the given rectangle that corresponds
     /// to this corner.
-    func point(inRect rect: CGRect) -> CGPoint {
+    func point(in rect: CGRect) -> CGPoint {
         switch self {
-        case .topLeading:
-            return CGPoint(x: rect.minX, y: rect.maxY)
-        case .topTrailing:
-            return CGPoint(x: rect.maxX, y: rect.maxY)
-        case .bottomLeading:
-            return CGPoint(x: rect.minX, y: rect.minY)
-        case .bottomTrailing:
-            return CGPoint(x: rect.maxX, y: rect.minY)
+        case .topLeading: CGPoint(x: rect.minX, y: rect.maxY)
+        case .topTrailing: CGPoint(x: rect.maxX, y: rect.maxY)
+        case .bottomLeading: CGPoint(x: rect.minX, y: rect.minY)
+        case .bottomTrailing: CGPoint(x: rect.maxX, y: rect.minY)
         }
     }
 }
@@ -65,28 +61,20 @@ enum Edge {
     /// The corners that, when connected by a path, make up this edge.
     var corners: [Corner] {
         switch self {
-        case .top:
-            return [.topLeading, .topTrailing]
-        case .bottom:
-            return [.bottomLeading, .bottomTrailing]
-        case .leading:
-            return [.topLeading, .bottomLeading]
-        case .trailing:
-            return [.topTrailing, .bottomTrailing]
+        case .top: [.topLeading, .topTrailing]
+        case .bottom: [.bottomLeading, .bottomTrailing]
+        case .leading: [.topLeading, .bottomLeading]
+        case .trailing: [.topTrailing, .bottomTrailing]
         }
     }
 
     /// The edge at the opposite end of the rectangle.
     var opposite: Edge {
         switch self {
-        case .top:
-            return .bottom
-        case .bottom:
-            return .top
-        case .leading:
-            return .trailing
-        case .trailing:
-            return .leading
+        case .top: .bottom
+        case .bottom: .top
+        case .leading: .trailing
+        case .trailing: .leading
         }
     }
 }

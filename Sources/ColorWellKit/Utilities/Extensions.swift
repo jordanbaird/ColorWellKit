@@ -9,7 +9,6 @@ import SwiftUI
 #endif
 
 // MARK: CGRect
-
 extension CGRect {
     /// Returns a new rectangle that is the result of centering the current
     /// rectangle within the bounds of another rectangle.
@@ -27,7 +26,6 @@ extension CGRect {
 }
 
 // MARK: Comparable
-
 extension Comparable {
     /// Returns a value that is the result of clamping the current value to
     /// the given limiting range.
@@ -37,7 +35,6 @@ extension Comparable {
 }
 
 // MARK: NSColor
-
 extension NSColor {
     /// Returns the average of this color's red, green, and blue components,
     /// approximating the brightness of the color.
@@ -227,7 +224,6 @@ extension NSColor {
 }
 
 // MARK: NSColorPanel
-
 extension NSColorPanel {
     /// Box for a weak reference to an attached object.
     private class WeakObject {
@@ -318,7 +314,6 @@ extension NSColorPanel {
 }
 
 // MARK: NSImage
-
 extension NSImage {
     /// Returns a new image by tinting the current image with the given color.
     ///
@@ -365,7 +360,6 @@ extension NSImage {
 }
 
 // MARK: NSView
-
 extension NSView {
     /// Returns this view's frame, converted to the coordinate system of
     /// its window.
@@ -379,7 +373,6 @@ extension NSView {
 #if canImport(SwiftUI)
 
 // MARK: Binding where Value == CGColor
-
 @available(macOS 10.15, *)
 extension Binding where Value == CGColor {
     /// A binding to an `NSColor` derived from this binding.
@@ -392,7 +385,6 @@ extension Binding where Value == CGColor {
 }
 
 // MARK: Binding where Value == Color
-
 @available(macOS 11.0, *)
 extension Binding where Value == Color {
     /// A binding to an `NSColor` derived from this binding.

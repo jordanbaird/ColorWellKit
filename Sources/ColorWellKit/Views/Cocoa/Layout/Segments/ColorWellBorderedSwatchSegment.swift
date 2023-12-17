@@ -14,17 +14,16 @@ class ColorWellBorderedSwatchSegment: ColorWellSwatchSegment {
     override class var edge: Edge? { nil }
 
     var bezelColor: NSColor {
-        let bezelColor: NSColor
-        switch state {
+        let bezelColor: NSColor = switch state {
         case .highlight, .pressed:
             switch ColorScheme.current {
             case .light:
-                bezelColor = selectedSegmentColor
+                selectedSegmentColor
             case .dark:
-                bezelColor = .highlightColor
+                .highlightColor
             }
         default:
-            bezelColor = segmentColor
+            segmentColor
         }
         guard isEnabled else {
             let alphaComponent = max(bezelColor.alphaComponent - 0.5, 0.1)
@@ -36,9 +35,9 @@ class ColorWellBorderedSwatchSegment: ColorWellSwatchSegment {
     override var borderColor: NSColor {
         switch ColorScheme.current {
         case .light:
-            return super.borderColor.blending(fraction: 0.25, of: .controlTextColor)
+            super.borderColor.blending(fraction: 0.25, of: .controlTextColor)
         case .dark:
-            return super.borderColor
+            super.borderColor
         }
     }
 
@@ -63,17 +62,17 @@ class ColorWellBorderedSwatchSegment: ColorWellSwatchSegment {
         let (inset, radius) = with(colorWell?.controlSize ?? .regular) { controlSize in
             let standardInset: CGFloat = 3
             let standardRadius: CGFloat = 2
-            switch controlSize {
+            return switch controlSize {
             case .large:
-                return (standardInset + 0.25, standardRadius + 0.2)
+                (standardInset + 0.25, standardRadius + 0.2)
             case .regular:
-                return (standardInset, standardRadius)
+                (standardInset, standardRadius)
             case .small:
-                return (standardInset - 0.75, standardRadius - 0.6)
+                (standardInset - 0.75, standardRadius - 0.6)
             case .mini:
-                return (standardInset - 1, standardRadius - 0.8)
+                (standardInset - 1, standardRadius - 0.8)
             @unknown default:
-                return (standardInset, standardRadius)
+                (standardInset, standardRadius)
             }
         }
 
@@ -97,11 +96,6 @@ class ColorWellBorderedSwatchSegment: ColorWellSwatchSegment {
     }
 
     override func needsDisplayOnStateChange(_ state: State) -> Bool {
-        switch state {
-        case .highlight, .pressed, .default:
-            return true
-        case .hover:
-            return false
-        }
+        state != .hover
     }
 }

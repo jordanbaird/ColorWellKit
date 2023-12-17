@@ -8,9 +8,7 @@ import AppKit
 /// A type that monitors for events within the scope of the current process.
 class LocalEventMonitor {
     private let mask: NSEvent.EventTypeMask
-
     private let handler: (NSEvent) -> NSEvent?
-
     private var monitor: Any?
 
     /// Creates an event monitor with the given event type mask and handler.

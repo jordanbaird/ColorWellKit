@@ -185,10 +185,8 @@ class ColorWellPullDownSwatchSegment: ColorWellSwatchSegment {
 
     override func needsDisplayOnStateChange(_ state: State) -> Bool {
         switch state {
-        case .hover, .default:
-            return true
-        case .highlight, .pressed:
-            return false
+        case .hover, .default: true
+        case .highlight, .pressed: false
         }
     }
 
@@ -216,9 +214,7 @@ class ColorWellPullDownSwatchSegment: ColorWellSwatchSegment {
 class ColorWellSinglePullDownSwatchSegment: ColorWellPullDownSwatchSegment {
     override class var edge: Edge? { nil }
 
-    override var borderColor: NSColor {
-        .placeholderTextColor
-    }
+    override var borderColor: NSColor { .placeholderTextColor }
 }
 
 // MARK: - ColorWellPartialPullDownSwatchSegment

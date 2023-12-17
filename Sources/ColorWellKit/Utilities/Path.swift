@@ -18,7 +18,7 @@ struct Path {
         case close
 
         static func arc(around corner: Corner, ofRect rect: CGRect, radius: CGFloat) -> Element {
-            let mid = corner.point(inRect: rect)
+            let mid = corner.point(in: rect)
 
             let start: CGPoint
             let end: CGPoint
@@ -108,7 +108,7 @@ struct Path {
         let squaredCorners = edge?.corners ?? []
         var elements: [Element] = Corner.clockwiseOrder.map { corner in
             if squaredCorners.contains(corner) {
-                return .line(to: corner.point(inRect: rect))
+                return .line(to: corner.point(in: rect))
             }
             return .arc(around: corner, ofRect: rect, radius: radius)
         }
