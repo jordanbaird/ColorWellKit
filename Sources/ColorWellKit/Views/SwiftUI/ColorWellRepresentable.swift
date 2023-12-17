@@ -144,6 +144,7 @@ struct ColorWellRepresentable: NSViewRepresentable {
             let locationInWindow = event.locationInWindow
             guard
                 let colorWell,
+                event.window === colorWell.window,
                 colorWell.frameConvertedToWindow.contains(locationInWindow),
                 let segment = colorWell.segment(at: locationInWindow)
             else {
