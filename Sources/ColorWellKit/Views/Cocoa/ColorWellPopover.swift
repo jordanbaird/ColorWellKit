@@ -91,16 +91,16 @@ extension ColorWellPopover {
 
             translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
-                widthAnchor.constraint(equalTo: layoutView.widthAnchor, constant: 13),
-                heightAnchor.constraint(equalTo: layoutView.heightAnchor, constant: 13),
+                widthAnchor.constraint(equalTo: layoutView.widthAnchor, constant: 20),
+                heightAnchor.constraint(equalTo: layoutView.heightAnchor, constant: 20),
             ])
 
             layoutView.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
-                layoutView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 6.5),
-                layoutView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -6.5),
-                layoutView.topAnchor.constraint(equalTo: topAnchor, constant: 6.5),
-                layoutView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -6.5),
+                layoutView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+                layoutView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+                layoutView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+                layoutView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
             ])
         }
     }
