@@ -1,5 +1,5 @@
 //
-//  ColorWellLayoutView.swift
+//  CWColorWellLayoutView.swift
 //  ColorWellKit
 //
 
@@ -24,12 +24,12 @@ private struct LayoutAnchorKey: Hashable {
 }
 
 /// A grid view that displays color well segments side by side.
-class ColorWellLayoutView: NSGridView {
+class CWColorWellLayoutView: NSGridView {
 
     // MARK: Properties
 
     @objc dynamic // @objc dynamic to enable kvo
-    private weak var colorWell: ColorWell?
+    private weak var colorWell: CWColorWell?
 
     @objc dynamic // @objc dynamic to enable kvo
     private var widthConstant: CGFloat = 0
@@ -38,7 +38,7 @@ class ColorWellLayoutView: NSGridView {
 
     private let bezelGradient: NSGradient
 
-    private(set) var segments = [ColorWellSegment]()
+    private(set) var segments = [CWColorWellSegment]()
 
     private var styleObservation: NSKeyValueObservation?
 
@@ -57,7 +57,7 @@ class ColorWellLayoutView: NSGridView {
 
     // MARK: Initializers
 
-    init(colorWell: ColorWell) {
+    init(colorWell: CWColorWell) {
         self.bezelGradient = NSGradient(colors: [
             NSColor.clear,
             NSColor.clear,
@@ -140,14 +140,14 @@ class ColorWellLayoutView: NSGridView {
         resetLayoutView()
         switch colorWell.style {
         case .default:
-            segments.append(ColorWellBorderedSwatchSegment(colorWell: colorWell))
+            segments.append(CWColorWellBorderedSwatchSegment(colorWell: colorWell))
             widthConstant = 0
         case .minimal:
-            segments.append(ColorWellSinglePullDownSwatchSegment(colorWell: colorWell))
+            segments.append(CWColorWellSinglePullDownSwatchSegment(colorWell: colorWell))
             widthConstant = 0
         case .expanded:
-            segments.append(ColorWellPartialPullDownSwatchSegment(colorWell: colorWell))
-            segments.append(ColorWellToggleSegment(colorWell: colorWell))
+            segments.append(CWColorWellPartialPullDownSwatchSegment(colorWell: colorWell))
+            segments.append(CWColorWellToggleSegment(colorWell: colorWell))
             widthConstant = -1
         }
         row = addRow(with: segments)
@@ -165,7 +165,7 @@ class ColorWellLayoutView: NSGridView {
 
         switch colorWell.style {
         case .expanded:
-            let widthConstant = ColorWellToggleSegment.widthConstant
+            let widthConstant = CWColorWellToggleSegment.widthConstant
             bezelPath = Path.segmentPath(
                 rect: NSRect(
                     x: bounds.maxX - widthConstant,
@@ -174,7 +174,7 @@ class ColorWellLayoutView: NSGridView {
                     height: bounds.height - lineWidth
                 ),
                 controlSize: colorWell.controlSize,
-                segmentType: ColorWellToggleSegment.self,
+                segmentType: CWColorWellToggleSegment.self,
                 shouldClose: false
             )
             .stroked(lineWidth: lineWidth)

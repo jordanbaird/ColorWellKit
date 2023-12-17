@@ -5,7 +5,7 @@
 
 import Foundation
 
-extension ColorWell {
+extension CWColorWell {
     /// Constants that specify the appearance and behavior of a color well.
     @objc public enum Style: Int {
         /// The color well is displayed as a rectangular control that displays
@@ -29,7 +29,7 @@ extension ColorWell {
     }
 }
 
-extension ColorWell.Style: CustomStringConvertible {
+extension CWColorWell.Style: CustomStringConvertible {
     public var description: String {
         let prefix = String(describing: Self.self) + "."
         switch self {

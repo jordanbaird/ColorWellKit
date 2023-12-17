@@ -1,5 +1,5 @@
 //
-//  ColorWellBorderedSwatchSegment.swift
+//  CWColorWellBorderedSwatchSegment.swift
 //  ColorWellKit
 //
 
@@ -7,7 +7,7 @@ import AppKit
 
 /// A segment that displays a color swatch with the color well's current
 /// color selection, and that toggles the color panel when pressed.
-class ColorWellBorderedSwatchSegment: ColorWellSwatchSegment {
+class CWColorWellBorderedSwatchSegment: CWColorWellSwatchSegment {
 
     // MARK: Properties
 
@@ -43,8 +43,8 @@ class ColorWellBorderedSwatchSegment: ColorWellSwatchSegment {
 
     // MARK: Methods
 
-    override class func performAction(for segment: ColorWellSegment) -> Bool {
-        ColorWellToggleSegment.performAction(for: segment)
+    override class func performAction(for segment: CWColorWellSegment) -> Bool {
+        CWColorWellToggleSegment.performAction(for: segment)
     }
 
     override func drawSwatch() {

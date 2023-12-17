@@ -1,14 +1,14 @@
 //
-//  ColorWellToggleSegment.swift
+//  CWColorWellToggleSegment.swift
 //  ColorWellKit
 //
 
 import AppKit
 
-// MARK: - ColorWellToggleSegment
+// MARK: - CWColorWellToggleSegment
 
 /// A segment that toggles the system color panel when pressed.
-class ColorWellToggleSegment: ColorWellSegment {
+class CWColorWellToggleSegment: CWColorWellSegment {
 
     // MARK: Types
 
@@ -63,7 +63,7 @@ class ColorWellToggleSegment: ColorWellSegment {
 
     // MARK: Initializers
 
-    override init(colorWell: ColorWell) {
+    override init(colorWell: CWColorWell) {
         super.init(colorWell: colorWell)
         self.translatesAutoresizingMaskIntoConstraints = false
         self.widthAnchor.constraint(equalToConstant: Self.widthConstant).isActive = true
@@ -71,7 +71,7 @@ class ColorWellToggleSegment: ColorWellSegment {
 
     // MARK: Methods
 
-    override class func performAction(for segment: ColorWellSegment) -> Bool {
+    override class func performAction(for segment: CWColorWellSegment) -> Bool {
         guard let colorWell = segment.colorWell else {
             return false
         }

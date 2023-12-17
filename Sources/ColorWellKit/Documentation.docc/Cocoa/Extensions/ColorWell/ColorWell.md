@@ -1,4 +1,4 @@
-# ``ColorWellKit/ColorWell``
+# ``ColorWellKit/CWColorWell``
 
 ## Overview
 
@@ -33,5 +33,5 @@ Color wells provide an interface in your app for users to select custom colors. 
 
 ### Supporting Types
 
-- ``ColorWellDelegate``
+- ``CWColorWellDelegate``
 - ``Style-swift.enum``

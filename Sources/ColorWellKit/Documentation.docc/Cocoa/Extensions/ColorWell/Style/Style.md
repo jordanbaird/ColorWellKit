@@ -1,4 +1,4 @@
-# ``ColorWellKit/ColorWell/Style-swift.enum``
+# ``ColorWellKit/CWColorWell/Style-swift.enum``
 
 ## Topics
 

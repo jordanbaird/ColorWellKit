@@ -1,4 +1,4 @@
-# ``ColorWellKit/ColorWell/Style-swift.enum/init(rawValue:)``
+# ``ColorWellKit/CWColorWell/Style-swift.enum/init(rawValue:)``
 
 Creates a new color well style with the specified raw value.
 

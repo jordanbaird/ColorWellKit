@@ -1,17 +1,17 @@
 //
-//  ColorWellPopover.swift
+//  CWColorWellPopover.swift
 //  ColorWellKit
 //
 
 import AppKit
 
-// MARK: - ColorWellPopover
+// MARK: - CWColorWellPopover
 
 /// A popover that contains a grid of selectable color swatches.
-class ColorWellPopover: NSPopover, NSPopoverDelegate {
-    private weak var colorWell: ColorWell?
+class CWColorWellPopover: NSPopover, NSPopoverDelegate {
+    private weak var colorWell: CWColorWell?
 
-    init(colorWell: ColorWell) {
+    init(colorWell: CWColorWell) {
         self.colorWell = colorWell
         super.init()
         self.contentViewController = ContentViewController(colorWell: colorWell)
@@ -43,11 +43,11 @@ class ColorWellPopover: NSPopover, NSPopoverDelegate {
 }
 
 // MARK: - ContentViewController
-extension ColorWellPopover {
+extension CWColorWellPopover {
     private class ContentViewController: NSViewController {
         let contentView: ContentView
 
-        init(colorWell: ColorWell) {
+        init(colorWell: CWColorWell) {
             self.contentView = ContentView(colorWell: colorWell)
             super.init(nibName: nil, bundle: nil)
             self.view = self.contentView
@@ -61,11 +61,11 @@ extension ColorWellPopover {
 }
 
 // MARK: - ContentView
-extension ColorWellPopover {
+extension CWColorWellPopover {
     private class ContentView: NSView {
         let layoutView: LayoutView
 
-        init(colorWell: ColorWell) {
+        init(colorWell: CWColorWell) {
             self.layoutView = LayoutView(colorWell: colorWell)
             super.init(frame: .zero)
             addSubview(self.layoutView)
@@ -107,12 +107,12 @@ extension ColorWellPopover {
 }
 
 // MARK: - LayoutView
-extension ColorWellPopover {
+extension CWColorWellPopover {
     private class LayoutView: NSGridView {
-        private weak var colorWell: ColorWell?
+        private weak var colorWell: CWColorWell?
         let swatchLayout: SwatchLayout
 
-        init(colorWell: ColorWell) {
+        init(colorWell: CWColorWell) {
             self.colorWell = colorWell
             self.swatchLayout = SwatchLayout(colorWell: colorWell)
             super.init(frame: .zero)
@@ -146,12 +146,12 @@ extension ColorWellPopover {
 }
 
 // MARK: - SwatchLayout
-extension ColorWellPopover {
+extension CWColorWellPopover {
     private class SwatchLayout: NSGridView {
         private let selectionIndicator = SelectionIndicator()
         private(set) var swatches = [ColorSwatch]()
 
-        init(colorWell: ColorWell) {
+        init(colorWell: CWColorWell) {
             super.init(frame: .zero)
             self.rowSpacing = 1
             self.columnSpacing = 1
@@ -171,7 +171,7 @@ extension ColorWellPopover {
             return row
         }
 
-        private func setRows(with colorWell: ColorWell) {
+        private func setRows(with colorWell: CWColorWell) {
             guard swatches.isEmpty else {
                 cwk_log("SwatchLayout rows already set", category: .popover)
                 return
@@ -267,7 +267,7 @@ extension ColorWellPopover {
 }
 
 // MARK: - SelectionIndicator
-extension ColorWellPopover {
+extension CWColorWellPopover {
     private class SelectionIndicator: NSView {
         override init(frame frameRect: NSRect) {
             super.init(frame: frameRect)
@@ -296,9 +296,9 @@ extension ColorWellPopover {
 }
 
 // MARK: - ColorSwatch
-extension ColorWellPopover {
+extension CWColorWellPopover {
     private class ColorSwatch: NSView {
-        private weak var colorWell: ColorWell?
+        private weak var colorWell: CWColorWell?
         private weak var swatchLayout: SwatchLayout?
 
         let color: NSColor
@@ -307,7 +307,7 @@ extension ColorWellPopover {
         init(
             color: NSColor,
             size: NSSize,
-            colorWell: ColorWell?,
+            colorWell: CWColorWell?,
             swatchLayout: SwatchLayout?
         ) {
             self.color = color

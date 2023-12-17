@@ -121,7 +121,7 @@ struct Path {
     static func segmentPath(
         rect: CGRect,
         controlSize: NSControl.ControlSize?,
-        segmentType: ColorWellSegment.Type,
+        segmentType: CWColorWellSegment.Type,
         shouldClose: Bool = true
     ) -> Path {
         // flatten the opposite edge to join up with the

@@ -34,7 +34,7 @@ Add the following dependency to your `Package.swift` file:
 
 ### SwiftUI
 
-Create a `ColorWellView` and add it to your view hierarchy. There are a wide range of initializers and modifiers to choose from, allowing you to set the color well's color, label, and style.
+Create a `ColorWell` and add it to your view hierarchy. There are a wide range of initializers and modifiers to choose from, allowing you to set the color well's color, label, and style.
 
 ```swift
 import SwiftUI
@@ -45,7 +45,7 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            ColorWellView("Text Color", selection: $textColor)
+            ColorWell("Text Color", selection: $textColor)
                 .colorWellStyle(.expanded)
 
             MyCustomTextEditor(textColor: $textColor)
@@ -56,14 +56,14 @@ struct ContentView: View {
 
 ### Cocoa
 
-Create a `ColorWell` using one of the available initializers, or use an `IBOutlet` to create a connection to a Storyboard or NIB file. Respond to color changes using your preferred design pattern.
+Create a `CWColorWell` using one of the available initializers, or use an `IBOutlet` to create a connection to a Storyboard or NIB file. Respond to color changes using your preferred design pattern.
 
 ```swift
 import Cocoa
 import ColorWellKit
 
 class ViewController: NSViewController {
-    @IBOutlet var colorWell: ColorWell!
+    @IBOutlet var colorWell: CWColorWell!
     @IBOutlet var textEditor: NSTextView!
 
     override func viewDidLoad() {
@@ -73,7 +73,7 @@ class ViewController: NSViewController {
         }
     }
 
-    @IBAction func updateTextColor(sender: ColorWell) {
+    @IBAction func updateTextColor(sender: CWColorWell) {
         textEditor.textColor = sender.color
     }
 }

@@ -2,15 +2,15 @@
 
 ## Overview
 
-``ColorWell`` provides support for several common design patterns:
+``CWColorWell`` provides support for several common design patterns:
 
 ### Key-value observing
 
-To implement key-value observing, call the `observe(_:options:changeHandler:)` method with a key path to the color well's ``ColorWell/color`` property and store the returned observation.
+To implement key-value observing, call the `observe(_:options:changeHandler:)` method with a key path to the color well's ``CWColorWell/color`` property and store the returned observation.
 
 ```swift
 class MyCustomViewController: NSViewController {
-    let colorWell = ColorWell(style: .expanded)
+    let colorWell = CWColorWell(style: .expanded)
     var observation: NSKeyValueObservation?
 
     override func viewDidLoad() {
@@ -35,7 +35,7 @@ To implement the target-action mechanism, assign a target object and an action m
 
 ```swift
 class MyCustomViewController: NSViewController {
-    let colorWell = ColorWell(style: .expanded)
+    let colorWell = CWColorWell(style: .expanded)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +45,7 @@ class MyCustomViewController: NSViewController {
         colorWell.action = #selector(colorDidChange(_:))
     }
 
-    @objc func colorDidChange(_ sender: ColorWell) {
+    @objc func colorDidChange(_ sender: CWColorWell) {
         print("Color changed to: \(sender.color)")
     }
 }
@@ -57,13 +57,13 @@ For more information about the target-action mechanism, see the [NSControl docum
 
 > Note: The [`Combine`](https://developer.apple.com/documentation/combine) framework is available starting in macOS 10.15.
 
-After importing `Combine`, call the `publisher(for:)` method with a key path to the color well's ``ColorWell/color`` property. Chain the publisher to a call to `sink(receiveValue:)`, and store the returned `Cancellable` to retain the subscription.
+After importing `Combine`, call the `publisher(for:)` method with a key path to the color well's ``CWColorWell/color`` property. Chain the publisher to a call to `sink(receiveValue:)`, and store the returned `Cancellable` to retain the subscription.
 
 ```swift
 import Combine
 
 class MyCustomViewController: NSViewController {
-    let colorWell = ColorWell(style: .expanded)
+    let colorWell = CWColorWell(style: .expanded)
     var cancellable: Cancellable?
 
     override func viewDidLoad() {

@@ -1,16 +1,16 @@
 //
-//  ColorWell.swift
+//  CWColorWell.swift
 //  ColorWellKit
 //
 
 import AppKit
 
 /// A control that displays a user-selectable color value.
-public class ColorWell: _ColorWellBaseControl {
+public class CWColorWell: _CWColorWellBaseControl {
 
     // MARK: Static Properties
 
-    private static let popoverStorage = ObjectAssociation<ColorWellPopover>()
+    private static let popoverStorage = ObjectAssociation<CWColorWellPopover>()
 
     /// Hexadecimal strings used to construct the default colors shown
     /// in a color well's popover.
@@ -34,7 +34,7 @@ public class ColorWell: _ColorWellBaseControl {
     private var isExclusive = true
 
     /// The color well's delegate object.
-    public weak var delegate: ColorWellDelegate?
+    public weak var delegate: CWColorWellDelegate?
 
     /// A Boolean value that indicates whether the color well supports being
     /// included in group selections.
@@ -65,7 +65,7 @@ public class ColorWell: _ColorWellBaseControl {
     /// You can add and remove values to change the swatches that are displayed.
     ///
     /// ```swift
-    /// let colorWell = ColorWell()
+    /// let colorWell = CWColorWell()
     /// colorWell.swatchColors += [
     ///     .systemPurple,
     ///     .controlColor,
@@ -248,7 +248,7 @@ public class ColorWell: _ColorWellBaseControl {
     ///
     /// - Returns: `true` on success, `false` otherwise.
     @discardableResult
-    func makeAndShowPopover(relativeTo segment: ColorWellSegment) -> Bool {
+    func makeAndShowPopover(relativeTo segment: CWColorWellSegment) -> Bool {
         if Self.popoverStorage[self] != nil {
             // a popover is already being shown
             return false
@@ -256,7 +256,7 @@ public class ColorWell: _ColorWellBaseControl {
         guard layoutView.segments.contains(segment) else {
             return false
         }
-        let popover = ColorWellPopover(colorWell: self)
+        let popover = CWColorWellPopover(colorWell: self)
 
         // the popover is removed from storage when it is closed; we use the
         // presence of the popover to determine whether the next call to this
@@ -284,7 +284,7 @@ public class ColorWell: _ColorWellBaseControl {
 
         // set up a series of deferred blocks to execute in reverse order
         // once the color has been set
-        var deferredBlocks = [(ColorWell) -> Void]()
+        var deferredBlocks = [(CWColorWell) -> Void]()
 
         // these get executed regardless of the options passed in
         deferredBlocks.append { colorWell in

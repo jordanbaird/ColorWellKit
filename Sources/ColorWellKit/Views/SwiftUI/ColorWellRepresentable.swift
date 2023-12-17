@@ -8,7 +8,7 @@ import SwiftUI
 
 @available(macOS 10.15, *)
 struct ColorWellRepresentable: NSViewRepresentable {
-    final class BridgedColorWell: ColorWell {
+    final class BridgedColorWell: CWColorWell {
         var mouseMonitor: LocalEventMonitor?
 
         var supportsOpacity: Bool = true {
@@ -18,7 +18,7 @@ struct ColorWellRepresentable: NSViewRepresentable {
             }
         }
 
-        func segment(at point: NSPoint) -> ColorWellSegment? {
+        func segment(at point: NSPoint) -> CWColorWellSegment? {
             layoutView.segments.first { segment in
                 segment.frameConvertedToWindow.contains(point)
             }
@@ -86,7 +86,7 @@ struct ColorWellRepresentable: NSViewRepresentable {
                     break
                 }
             case .expanded:
-                size.width += ColorWellToggleSegment.widthConstant
+                size.width += CWColorWellToggleSegment.widthConstant
                 switch controlSize {
                 case .large:
                     size.width += 6
@@ -107,18 +107,18 @@ struct ColorWellRepresentable: NSViewRepresentable {
         }
     }
 
-    final class BridgedColorWellDelegate: ColorWellDelegate {
+    final class BridgedColorWellDelegate: CWColorWellDelegate {
         let representable: ColorWellRepresentable
 
         init(representable: ColorWellRepresentable) {
             self.representable = representable
         }
 
-        func colorWellDidChangeColor(_ colorWell: ColorWell) {
+        func colorWellDidChangeColor(_ colorWell: CWColorWell) {
             representable.selection = colorWell.color
         }
 
-        func colorWellDidActivate(_ colorWell: ColorWell) {
+        func colorWellDidActivate(_ colorWell: CWColorWell) {
             if NSColorPanel.shared.isMainAttachedObject(colorWell) {
                 NSColorPanel.shared.showsAlpha = representable.supportsOpacity
             }

@@ -1,12 +1,12 @@
 //
-//  ColorWellSegment.swift
+//  CWColorWellSegment.swift
 //  ColorWellKit
 //
 
 import AppKit
 
 /// A view that draws a segmented portion of a color well.
-class ColorWellSegment: NSView {
+class CWColorWellSegment: NSView {
 
     // MARK: Types
 
@@ -46,7 +46,7 @@ class ColorWellSegment: NSView {
 
     // MARK: Instance Properties
 
-    weak var colorWell: ColorWell?
+    weak var colorWell: CWColorWell?
 
     /// The current and previous states of the segment.
     var backingStates = (current: State.default, previous: State.default)
@@ -112,7 +112,7 @@ class ColorWellSegment: NSView {
     // MARK: Initializers
 
     /// Creates a segment for the given color well.
-    init(colorWell: ColorWell) {
+    init(colorWell: CWColorWell) {
         super.init(frame: .zero)
         self.colorWell = colorWell
         self.wantsLayer = true
@@ -136,7 +136,7 @@ class ColorWellSegment: NSView {
     ///
     /// - Returns: A Boolean value indicating whether the action was successfully
     ///   performed.
-    class func performAction(for segment: ColorWellSegment) -> Bool { false }
+    class func performAction(for segment: CWColorWellSegment) -> Bool { false }
 
     // MARK: Instance Methods
 
@@ -182,7 +182,7 @@ class ColorWellSegment: NSView {
 }
 
 // MARK: Overridden Properties
-extension ColorWellSegment {
+extension CWColorWellSegment {
     override var acceptsFirstResponder: Bool { true }
 
     override var needsPanelToBecomeKey: Bool { false }
@@ -191,7 +191,7 @@ extension ColorWellSegment {
 }
 
 // MARK: Overridden Methods
-extension ColorWellSegment {
+extension CWColorWellSegment {
     override func draw(_ dirtyRect: NSRect) {
         segmentPath(bounds).fill(with: displayColor)
     }

@@ -29,11 +29,11 @@ extension LogCategory {
     /// The main log category.
     static let main = LogCategory(rawValue: "main")
 
-    /// The log category to use for the `ColorWellPopover` type.
-    static let popover = LogCategory(rawValue: "ColorWellPopover")
+    /// The log category to use for the `CWColorWellPopover` type.
+    static let popover = LogCategory(rawValue: "CWColorWellPopover")
 
-    /// The log category to use for the `ColorComponents` type.
-    static let components = LogCategory(rawValue: "ColorComponents")
+    /// The log category to use for the `CWColorComponents` type.
+    static let components = LogCategory(rawValue: "CWColorComponents")
 }
 
 /// Sends a message to the logging system using the given category and log level.

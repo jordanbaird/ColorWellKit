@@ -250,7 +250,7 @@ extension NSColorPanel {
             if let color: NSColor = newValue[0].color {
                 self.color = color
             }
-            for case let colorWell as ColorWell in newValue[1...] {
+            for case let colorWell as CWColorWell in newValue[1...] {
                 colorWell.updateColor(color, options: [
                     .informDelegate,
                     .informObservers,

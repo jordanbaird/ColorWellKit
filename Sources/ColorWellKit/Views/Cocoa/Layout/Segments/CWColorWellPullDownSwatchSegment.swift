@@ -1,15 +1,15 @@
 //
-//  ColorWellPullDownSwatchSegment.swift
+//  CWColorWellPullDownSwatchSegment.swift
 //  ColorWellKit
 //
 
 import AppKit
 
-// MARK: - ColorWellPullDownSwatchSegment
+// MARK: - CWColorWellPullDownSwatchSegment
 
 /// A segment that displays a color swatch with the color well's current
 /// color selection, and that triggers a pull-down action when pressed.
-class ColorWellPullDownSwatchSegment: ColorWellSwatchSegment {
+class CWColorWellPullDownSwatchSegment: CWColorWellSwatchSegment {
 
     // MARK: Properties
 
@@ -39,7 +39,7 @@ class ColorWellPullDownSwatchSegment: ColorWellSwatchSegment {
 
     // MARK: Methods
 
-    override class func performAction(for segment: ColorWellSegment) -> Bool {
+    override class func performAction(for segment: CWColorWellSegment) -> Bool {
         guard let colorWell = segment.colorWell else {
             return false
         }
@@ -49,7 +49,7 @@ class ColorWellPullDownSwatchSegment: ColorWellSwatchSegment {
             !segment.canPerformAction || NSEvent.modifierFlags.contains(.shift)
         {
             // can't perform the standard action; treat like a toggle segment
-            return ColorWellToggleSegment.performAction(for: segment)
+            return CWColorWellToggleSegment.performAction(for: segment)
         }
 
         if
@@ -208,18 +208,18 @@ class ColorWellPullDownSwatchSegment: ColorWellSwatchSegment {
     }
 }
 
-// MARK: - ColorWellSinglePullDownSwatchSegment
+// MARK: - CWColorWellSinglePullDownSwatchSegment
 
 /// A pull down swatch segment that fills its color well.
-class ColorWellSinglePullDownSwatchSegment: ColorWellPullDownSwatchSegment {
+class CWColorWellSinglePullDownSwatchSegment: CWColorWellPullDownSwatchSegment {
     override class var edge: Edge? { nil }
 
     override var borderColor: NSColor { .placeholderTextColor }
 }
 
-// MARK: - ColorWellPartialPullDownSwatchSegment
+// MARK: - CWColorWellPartialPullDownSwatchSegment
 
 /// A pull down swatch segment that does not fill its color well.
-class ColorWellPartialPullDownSwatchSegment: ColorWellPullDownSwatchSegment {
+class CWColorWellPartialPullDownSwatchSegment: CWColorWellPullDownSwatchSegment {
     override class var edge: Edge? { .leading }
 }

@@ -12,7 +12,7 @@ ColorWellKit is designed to mimic the appearance and behavior of the color well 
 
 ## SwiftUI
 
-Create a ``ColorWellView`` and add it to your view hierarchy. There are a wide range of initializers, as well as several modifiers to choose from, allowing you to set the color well's color, label, and style.
+Create a ``ColorWell`` and add it to your view hierarchy. There are a wide range of initializers, as well as several modifiers to choose from, allowing you to set the color well's color, label, and style.
 
 ```swift
 import SwiftUI
@@ -23,7 +23,7 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            ColorWellView("Font Color", selection: $fontColor)
+            ColorWell("Font Color", selection: $fontColor)
                 .colorWellStyle(.expanded)
 
             MyCustomTextEditor(fontColor: fontColor)
@@ -34,7 +34,7 @@ struct ContentView: View {
 
 ## Cocoa
 
-Create a ``ColorWell`` using one of the available initializers. Respond to color changes using your preferred design pattern (see <doc:ColorObservation>):
+Create a ``CWColorWell`` using one of the available initializers. Respond to color changes using your preferred design pattern (see <doc:ColorObservation>):
 
 ```swift
 import Cocoa
@@ -47,7 +47,7 @@ class ContentViewController: NSViewController {
     private var colorObservation: NSKeyValueObservation?
 
     override func viewDidLoad() {
-        let colorWell = ColorWell(style: .expanded)
+        let colorWell = CWColorWell(style: .expanded)
         colorWell.color = textEditor.fontColor
 
         colorObservation = colorWell.observe(\.color) { colorWell, _ in

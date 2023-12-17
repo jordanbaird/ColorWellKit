@@ -1,5 +1,5 @@
 //
-//  ColorWellView.swift
+//  ColorWell.swift
 //  ColorWellKit
 //
 
@@ -8,7 +8,7 @@ import SwiftUI
 
 /// A view that displays a user-selectable color value.
 @available(macOS 10.15, *)
-public struct ColorWellView<Label: View>: View {
+public struct ColorWell<Label: View>: View {
     @Binding private var selection: NSColor
 
     private let supportsOpacity: Bool
@@ -56,9 +56,9 @@ public struct ColorWellView<Label: View>: View {
     }
 }
 
-// MARK: ColorWellView where Label: View
+// MARK: ColorWell where Label: View
 @available(macOS 10.15, *)
-extension ColorWellView {
+extension ColorWell {
     /// Creates a color well with a binding to a color value, with the provided
     /// view being used as the color well's label.
     ///
@@ -101,9 +101,9 @@ extension ColorWellView {
     }
 }
 
-// MARK: ColorWellView where Label == Never
+// MARK: ColorWell where Label == Never
 @available(macOS 10.15, *)
-extension ColorWellView where Label == Never {
+extension ColorWell where Label == Never {
     /// Creates a color well with a binding to a color value.
     ///
     /// - Parameters:
@@ -134,9 +134,9 @@ extension ColorWellView where Label == Never {
     }
 }
 
-// MARK: ColorWellView where Label == Text
+// MARK: ColorWell where Label == Text
 @available(macOS 10.15, *)
-extension ColorWellView where Label == Text {
+extension ColorWell where Label == Text {
 
     // MARK: Generate Label From StringProtocol
 

@@ -23,7 +23,7 @@ extension View {
     /// styles.
     ///
     /// ```swift
-    /// ColorWellView(selection: $color)
+    /// ColorWell(selection: $color)
     ///     .colorWellSwatchColors([
     ///         .red, .orange, .yellow, .green, .blue, .indigo,
     ///         .purple, .brown, .gray, .white, .black,

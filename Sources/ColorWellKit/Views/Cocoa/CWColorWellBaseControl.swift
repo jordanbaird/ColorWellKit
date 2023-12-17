@@ -1,26 +1,26 @@
 //
-//  ColorWellBaseControl.swift
+//  CWColorWellBaseControl.swift
 //  ColorWellKit
 //
 
 import AppKit
 
 /// A base control that contains some default functionality for use in the
-/// main ``ColorWell`` class.
+/// main ``CWColorWell`` class.
 ///
-/// The public ``ColorWell`` class inherits from this class. The underscore
+/// The public ``CWColorWell`` class inherits from this class. The underscore
 /// in front of the name of this class indicates that it is a private API,
 /// and shouldn't be used. This class exists to enable public properties and
 /// methods to be overridden without polluting the package's documentation,
 /// and will probably continue to exist until a better solution is found.
-public class _ColorWellBaseControl: NSControl {
+public class _CWColorWellBaseControl: NSControl {
 
     // MARK: Types
 
     struct BackingStorage {
         static let defaultColor = NSColor(red: 1, green: 1, blue: 1, alpha: 1)
 
-        static let defaultStyle = ColorWell.Style.default
+        static let defaultStyle = CWColorWell.Style.default
 
         static let defaultSize = NSSize(width: 38, height: 24)
 
@@ -54,7 +54,7 @@ public class _ColorWellBaseControl: NSControl {
 
     private static let colorPanelObservations: [NSKeyValueObservation] = [
         NSColorPanel.shared.observe(\.color) { colorPanel, _ in
-            for case let colorWell as ColorWell in colorPanel.attachedObjects {
+            for case let colorWell as CWColorWell in colorPanel.attachedObjects {
                 colorWell.updateColor(colorPanel.color, options: [
                     .informDelegate,
                     .informObservers,
@@ -64,7 +64,7 @@ public class _ColorWellBaseControl: NSControl {
         },
         NSColorPanel.shared.observe(\.isVisible) { colorPanel, _ in
             if !colorPanel.isVisible {
-                for case let colorWell as ColorWell in colorPanel.attachedObjects {
+                for case let colorWell as CWColorWell in colorPanel.attachedObjects {
                     colorWell.deactivate()
                 }
             }
@@ -75,17 +75,17 @@ public class _ColorWellBaseControl: NSControl {
 
     final var backingStorage = BackingStorage()
 
-    final var layoutView: ColorWellLayoutView {
+    final var layoutView: CWColorWellLayoutView {
         enum Context {
-            static let storage = ObjectAssociation<ColorWellLayoutView>()
+            static let storage = ObjectAssociation<CWColorWellLayoutView>()
         }
         // force cast is okay here; at this point it should be guaranteed
-        // that self is an instance of ColorWell or one of its subclasses
-        let colorWell = self as! ColorWell // swiftlint:disable:this force_cast
+        // that self is an instance of CWColorWell or one of its subclasses
+        let colorWell = self as! CWColorWell // swiftlint:disable:this force_cast
         if let layoutView = Context.storage[colorWell] {
             return layoutView
         }
-        let layoutView = ColorWellLayoutView(colorWell: colorWell)
+        let layoutView = CWColorWellLayoutView(colorWell: colorWell)
         Context.storage[colorWell] = layoutView
         return layoutView
     }
@@ -115,20 +115,20 @@ public class _ColorWellBaseControl: NSControl {
 
     // MARK: Setup Methods
 
-    private static func earlySetup(type: _ColorWellBaseControl.Type) {
+    private static func earlySetup(type: _CWColorWellBaseControl.Type) {
         // fail as early as we can here
         precondition(
-            type is ColorWell.Type,
+            type is CWColorWell.Type,
             """
             Attempted to create instance of private class \(type). \
-            Use an instance of the public \(ColorWell.self) class instead.
+            Use an instance of the public \(CWColorWell.self) class instead.
             """
         )
         _ = NSColorWell.swizzler
-        _ = _ColorWellBaseControl.colorPanelObservations
+        _ = _CWColorWellBaseControl.colorPanelObservations
     }
 
-    private static func sharedSetup(colorWell: _ColorWellBaseControl) {
+    private static func sharedSetup(colorWell: _CWColorWellBaseControl) {
         colorWell.addSubview(colorWell.layoutView)
     }
 
@@ -158,7 +158,7 @@ public class _ColorWellBaseControl: NSControl {
                 break
             }
         case .expanded:
-            size.width += ColorWellToggleSegment.widthConstant
+            size.width += CWColorWellToggleSegment.widthConstant
             switch controlSize {
             case .large:
                 size.width += 8
@@ -180,7 +180,7 @@ public class _ColorWellBaseControl: NSControl {
 }
 
 // MARK: Overridden Properties
-extension _ColorWellBaseControl {
+extension _CWColorWellBaseControl {
     public override var acceptsFirstResponder: Bool { true }
 
     public override var alignmentRectInsets: NSEdgeInsets {
@@ -227,7 +227,7 @@ extension _ColorWellBaseControl {
 }
 
 // MARK: Overridden Methods
-extension _ColorWellBaseControl {
+extension _CWColorWellBaseControl {
     public override func keyDown(with event: NSEvent) {
         if
             let segment = layoutView.segments.first,
@@ -240,9 +240,9 @@ extension _ColorWellBaseControl {
 }
 
 // MARK: Accessibility
-extension _ColorWellBaseControl {
+extension _CWColorWellBaseControl {
     public override func accessibilityChildren() -> [Any]? {
-        if let toggleSegment = layoutView.segments.first(where: { $0 is ColorWellToggleSegment }) {
+        if let toggleSegment = layoutView.segments.first(where: { $0 is CWColorWellToggleSegment }) {
             return [toggleSegment]
         }
         return []
@@ -310,7 +310,7 @@ private extension NSColorWell {
         // a call to this method is actually a call to the original
         cwk_swizzled_activate(exclusive)
 
-        // attach to match ColorWell's behavior
+        // attach to match CWColorWell's behavior
         NSColorPanel.shared.attach(self)
 
         if NSColorPanel.shared.isExclusivelyAttached(self) {
@@ -332,7 +332,7 @@ private extension NSColorWell {
         // a call to this method is actually a call to the original
         cwk_swizzled_deactivate()
 
-        // detach to match ColorWell's behavior
+        // detach to match CWColorWell's behavior
         NSColorPanel.shared.detach(self)
     }
 }

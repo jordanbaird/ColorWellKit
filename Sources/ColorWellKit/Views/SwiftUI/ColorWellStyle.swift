@@ -11,13 +11,13 @@
 @available(macOS 10.15, *)
 public struct _ColorWellStyleConfiguration {
     /// The underlying style of the color well.
-    let style: ColorWell.Style
+    let style: CWColorWell.Style
 }
 
 @available(macOS 10.15, *)
 extension _ColorWellStyleConfiguration {
     static var `default`: _ColorWellStyleConfiguration {
-        _ColorWellStyleConfiguration(style: ColorWell.BackingStorage.defaultStyle)
+        _ColorWellStyleConfiguration(style: CWColorWell.BackingStorage.defaultStyle)
     }
 }
 

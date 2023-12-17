@@ -1,5 +1,5 @@
 //
-//  ColorWellSwatchSegment.swift
+//  CWColorWellSwatchSegment.swift
 //  ColorWellKit
 //
 
@@ -7,7 +7,7 @@ import AppKit
 
 /// A segment that displays a color swatch with the color well's current
 /// color selection.
-class ColorWellSwatchSegment: ColorWellSegment {
+class CWColorWellSwatchSegment: CWColorWellSegment {
 
     // MARK: Types
 
@@ -92,7 +92,7 @@ class ColorWellSwatchSegment: ColorWellSegment {
 
     // MARK: Initializers
 
-    override init(colorWell: ColorWell) {
+    override init(colorWell: CWColorWell) {
         super.init(colorWell: colorWell)
         registerForDraggedTypes([.color])
     }
