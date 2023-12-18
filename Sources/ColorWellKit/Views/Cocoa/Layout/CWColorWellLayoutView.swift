@@ -140,14 +140,14 @@ class CWColorWellLayoutView: NSGridView {
         resetLayoutView()
         switch colorWell.style {
         case .default:
-            segments.append(CWColorWellBorderedSwatchSegment(colorWell: colorWell))
+            segments.append(CWBorderedSwatchSegment(colorWell: colorWell))
             widthConstant = 0
         case .minimal:
-            segments.append(CWColorWellSinglePullDownSwatchSegment(colorWell: colorWell))
+            segments.append(CWSinglePullDownSwatchSegment(colorWell: colorWell))
             widthConstant = 0
         case .expanded:
-            segments.append(CWColorWellPartialPullDownSwatchSegment(colorWell: colorWell))
-            segments.append(CWColorWellToggleSegment(colorWell: colorWell))
+            segments.append(CWPartialPullDownSwatchSegment(colorWell: colorWell))
+            segments.append(CWToggleSegment(colorWell: colorWell))
             widthConstant = -1
         }
         row = addRow(with: segments)
@@ -165,7 +165,7 @@ class CWColorWellLayoutView: NSGridView {
 
         switch colorWell.style {
         case .expanded:
-            let widthConstant = CWColorWellToggleSegment.widthConstant
+            let widthConstant = CWToggleSegment.widthConstant
             bezelPath = Path.segmentPath(
                 rect: NSRect(
                     x: bounds.maxX - widthConstant,
@@ -174,7 +174,7 @@ class CWColorWellLayoutView: NSGridView {
                     height: bounds.height - lineWidth
                 ),
                 controlSize: colorWell.controlSize,
-                segmentType: CWColorWellToggleSegment.self,
+                segmentType: CWToggleSegment.self,
                 shouldClose: false
             )
             .stroked(lineWidth: lineWidth)

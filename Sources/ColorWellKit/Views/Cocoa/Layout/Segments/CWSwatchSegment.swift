@@ -1,5 +1,5 @@
 //
-//  CWColorWellSwatchSegment.swift
+//  CWSwatchSegment.swift
 //  ColorWellKit
 //
 
@@ -7,7 +7,7 @@ import AppKit
 
 /// A segment that displays a color swatch with the color well's current
 /// color selection.
-class CWColorWellSwatchSegment: CWColorWellSegment {
+class CWSwatchSegment: CWColorWellSegment {
 
     // MARK: Types
 

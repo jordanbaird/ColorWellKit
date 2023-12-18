@@ -1,15 +1,15 @@
 //
-//  CWColorWellPullDownSwatchSegment.swift
+//  CWPullDownSwatchSegment.swift
 //  ColorWellKit
 //
 
 import AppKit
 
-// MARK: - CWColorWellPullDownSwatchSegment
+// MARK: - CWPullDownSwatchSegment
 
 /// A segment that displays a color swatch with the color well's current
 /// color selection, and that triggers a pull-down action when pressed.
-class CWColorWellPullDownSwatchSegment: CWColorWellSwatchSegment {
+class CWPullDownSwatchSegment: CWSwatchSegment {
 
     // MARK: Properties
 
@@ -49,7 +49,7 @@ class CWColorWellPullDownSwatchSegment: CWColorWellSwatchSegment {
             !segment.canPerformAction || NSEvent.modifierFlags.contains(.shift)
         {
             // can't perform the standard action; treat like a toggle segment
-            return CWColorWellToggleSegment.performAction(for: segment)
+            return CWToggleSegment.performAction(for: segment)
         }
 
         if
@@ -208,18 +208,18 @@ class CWColorWellPullDownSwatchSegment: CWColorWellSwatchSegment {
     }
 }
 
-// MARK: - CWColorWellSinglePullDownSwatchSegment
+// MARK: - CWSinglePullDownSwatchSegment
 
 /// A pull down swatch segment that fills its color well.
-class CWColorWellSinglePullDownSwatchSegment: CWColorWellPullDownSwatchSegment {
+class CWSinglePullDownSwatchSegment: CWPullDownSwatchSegment {
     override class var edge: Edge? { nil }
 
     override var borderColor: NSColor { .placeholderTextColor }
 }
 
-// MARK: - CWColorWellPartialPullDownSwatchSegment
+// MARK: - CWPartialPullDownSwatchSegment
 
 /// A pull down swatch segment that does not fill its color well.
-class CWColorWellPartialPullDownSwatchSegment: CWColorWellPullDownSwatchSegment {
+class CWPartialPullDownSwatchSegment: CWPullDownSwatchSegment {
     override class var edge: Edge? { .leading }
 }

@@ -86,7 +86,7 @@ struct ColorWellRepresentable: NSViewRepresentable {
                     break
                 }
             case .expanded:
-                size.width += CWColorWellToggleSegment.widthConstant
+                size.width += CWToggleSegment.widthConstant
                 switch controlSize {
                 case .large:
                     size.width += 6

@@ -1,14 +1,14 @@
 //
-//  CWColorWellToggleSegment.swift
+//  CWToggleSegment.swift
 //  ColorWellKit
 //
 
 import AppKit
 
-// MARK: - CWColorWellToggleSegment
+// MARK: - CWToggleSegment
 
 /// A segment that toggles the system color panel when pressed.
-class CWColorWellToggleSegment: CWColorWellSegment {
+class CWToggleSegment: CWColorWellSegment {
 
     // MARK: Types
 

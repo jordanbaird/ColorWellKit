@@ -158,7 +158,7 @@ public class _CWColorWellBaseControl: NSControl {
                 break
             }
         case .expanded:
-            size.width += CWColorWellToggleSegment.widthConstant
+            size.width += CWToggleSegment.widthConstant
             switch controlSize {
             case .large:
                 size.width += 8
@@ -242,7 +242,7 @@ extension _CWColorWellBaseControl {
 // MARK: Accessibility
 extension _CWColorWellBaseControl {
     public override func accessibilityChildren() -> [Any]? {
-        if let toggleSegment = layoutView.segments.first(where: { $0 is CWColorWellToggleSegment }) {
+        if let toggleSegment = layoutView.segments.first(where: { $0 is CWToggleSegment }) {
             return [toggleSegment]
         }
         return []
