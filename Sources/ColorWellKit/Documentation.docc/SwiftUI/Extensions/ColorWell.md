@@ -85,6 +85,7 @@ The example above will print the text "color well was pressed" to the console in
 - ``colorWellStyle(_:)``
 - ``colorWellSwatchColors(_:)``
 - ``colorWellSecondaryAction(_:)``
+- ``colorPanelMode(_:)``
 
 ### Getting a color well's content view
 
@@ -93,3 +94,4 @@ The example above will print the text "color well was pressed" to the console in
 ### Supporting Types
 
 - ``ColorWellStyle``
+- ``ColorPanelMode``

@@ -187,6 +187,9 @@ struct ColorWellRepresentable: NSViewRepresentable {
         {
             colorWell.swatchColors = swatchColors
         }
+        if colorWell.colorPanelMode != context.environment.colorPanelModeConfiguration?.mode {
+            colorWell.colorPanelMode = context.environment.colorPanelModeConfiguration?.mode
+        }
         if let secondaryActionDelegate = context.environment.colorWellSecondaryActionDelegate {
             colorWell.secondaryAction = #selector(secondaryActionDelegate.performAction)
             colorWell.secondaryTarget = secondaryActionDelegate

@@ -104,6 +104,9 @@ public class CWColorWell: _CWColorWellBaseControl {
     /// the color area execute your custom action method instead.
     public var secondaryTarget: AnyObject?
 
+    /// The mode to switch the color panel to when the color well activates.
+    public var colorPanelMode: NSColorPanel.Mode?
+
     /// The color well's color.
     ///
     /// Setting this value immediately updates the visual state of the color
@@ -133,6 +136,9 @@ public class CWColorWell: _CWColorWellBaseControl {
                     segment.updateForCurrentActiveState(shouldActivate)
                 }
                 if shouldActivate {
+                    if let colorPanelMode {
+                        NSColorPanel.shared.mode = colorPanelMode
+                    }
                     NSColorPanel.shared.orderFront(self)
                 }
             }

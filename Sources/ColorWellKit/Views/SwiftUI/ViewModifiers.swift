@@ -60,5 +60,16 @@ extension View {
             delegate = ColorWellSecondaryActionDelegate(action: action)
         }
     }
+
+    /// Sets the color panel mode for color wells in this view.
+    ///
+    /// When a color well with this modifier applied activates,
+    /// the system color panel will switch to the provided mode.
+    ///
+    /// - Parameter mode: The color panel mode to apply to color
+    ///   wells in this view.
+    public func colorPanelMode<M: ColorPanelMode>(_ mode: M) -> some View {
+        environment(\.colorPanelModeConfiguration, mode._configuration)
+    }
 }
 #endif

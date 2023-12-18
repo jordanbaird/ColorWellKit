@@ -22,6 +22,11 @@ private struct ColorWellSecondaryActionDelegateKey: EnvironmentKey {
 }
 
 @available(macOS 10.15, *)
+private struct ColorPanelModeConfigurationKey: EnvironmentKey {
+    static var defaultValue: _ColorPanelModeConfiguration?
+}
+
+@available(macOS 10.15, *)
 extension EnvironmentValues {
     var colorWellStyleConfiguration: _ColorWellStyleConfiguration {
         get { self[ColorWellStyleConfigurationKey.self] }
@@ -42,6 +47,14 @@ extension EnvironmentValues {
     var colorWellSecondaryActionDelegate: ColorWellSecondaryActionDelegate? {
         get { self[ColorWellSecondaryActionDelegateKey.self] }
         set { self[ColorWellSecondaryActionDelegateKey.self] = newValue }
+    }
+}
+
+@available(macOS 10.15, *)
+extension EnvironmentValues {
+    var colorPanelModeConfiguration: _ColorPanelModeConfiguration? {
+        get { self[ColorPanelModeConfigurationKey.self] }
+        set { self[ColorPanelModeConfigurationKey.self] = newValue }
     }
 }
 #endif
