@@ -18,9 +18,10 @@ extension View {
     /// Sets the colors of the swatches in color selection popovers
     /// displayed by color wells in this view.
     ///
-    /// Color selection popovers are displayed by color wells with
-    /// the ``ColorWellStyle/expanded`` or ``ColorWellStyle/minimal``
-    /// styles.
+    /// Color selection popovers are displayed by color wells that use
+    /// the ``ColorWellStyle/expanded`` and ``ColorWellStyle/minimal``
+    /// styles. This modifier allows you to provide an array of custom
+    /// colors to display in place of the default colors.
     ///
     /// ```swift
     /// ColorWell(selection: $color)
@@ -31,11 +32,10 @@ extension View {
     ///     .colorWellStyle(.expanded)
     /// ```
     ///
-    /// - Note: If the ``colorWellSecondaryAction(_:)`` modifier is
-    ///   also applied, the color wells in this view perform the
-    ///   provided action instead, and this modifier has no effect.
+    /// ![Custom swatch colors](custom-swatch-colors)
     ///
-    /// - Parameter colors: The colors to use to create the swatches.
+    /// - Parameter colors: An array of colors to use to create the
+    ///   swatches.
     @available(macOS 11.0, *)
     public func colorWellSwatchColors(_ colors: [Color]) -> some View {
         transformEnvironment(\.colorWellSwatchColors) { swatchColors in
@@ -46,15 +46,14 @@ extension View {
     /// Sets an action to perform when the color areas of color wells
     /// in this view are pressed.
     ///
-    /// - Note: If this modifier is applied, color wells in this view
-    ///   with the ``ColorWellStyle/expanded`` or ``ColorWellStyle/minimal``
-    ///   styles perform this action instead of displaying the default
-    ///   color selection popover. As such, modifiers that alter the
-    ///   default popover (such as ``colorWellSwatchColors(_:)``) will
-    ///   not take effect if this modifier is also applied.
+    /// If this modifier is applied, color wells that use either the
+    /// ``ColorWellStyle/expanded`` or ``ColorWellStyle/minimal``
+    /// styles perform the provided action instead of displaying the
+    /// color selection popover, and modifiers that alter the popover
+    /// (like ``colorWellSwatchColors(_:)``) have no effect.
     ///
     /// - Parameter action: An action to perform when the color areas
-    ///   of color wells in this view are pressed.
+    ///   of the color wells are pressed.
     public func colorWellSecondaryAction(_ action: @escaping () -> Void) -> some View {
         transformEnvironment(\.colorWellSecondaryActionDelegate) { delegate in
             delegate = ColorWellSecondaryActionDelegate(action: action)
@@ -63,11 +62,12 @@ extension View {
 
     /// Sets the color panel mode for color wells in this view.
     ///
-    /// When a color well with this modifier applied activates,
-    /// the system color panel will switch to the provided mode.
+    /// When a color well that uses this modifier is activated, the
+    /// system color panel switches to the color panel mode that is
+    /// passed to the `mode` parameter.
     ///
-    /// - Parameter mode: The color panel mode to apply to color
-    ///   wells in this view.
+    /// - Parameter mode: The color panel mode to apply to the
+    ///   color wells.
     public func colorPanelMode<M: ColorPanelMode>(_ mode: M) -> some View {
         environment(\.colorPanelModeConfiguration, mode._configuration)
     }

@@ -51,6 +51,8 @@ ColorWell(selection: $color)
     .colorWellStyle(.expanded)
 ```
 
+![Custom swatch colors](custom-swatch-colors)
+
 ### Providing a custom secondary action
 
 As a control, the main action of a color well is always a color selection. By default, a color well's secondary action displays a popover with a grid of selectable color swatches, as described above. You can replace this behavior using the ``colorWellSecondaryAction(_:)`` modifier:
