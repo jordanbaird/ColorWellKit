@@ -50,7 +50,7 @@ struct ColorInfo: CustomStringConvertible {
         init(color: NSColor) {
             switch color.colorSpace.colorSpaceModel {
             case _ where color.type != .componentBased:
-                cwk_log(
+                cw_log(
                     "Attempted to get the components for a non component-based color",
                     category: .components,
                     type: .error

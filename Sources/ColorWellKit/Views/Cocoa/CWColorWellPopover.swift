@@ -79,7 +79,7 @@ extension CWColorWellPopover {
 
         func setPadding() {
             guard layoutView.superview === self else {
-                cwk_log(
+                cw_log(
                     "Popover layout view is missing from its expected superview.",
                     category: .popover
                 )
@@ -173,7 +173,7 @@ extension CWColorWellPopover {
 
         private func setRows(with colorWell: CWColorWell) {
             guard swatches.isEmpty else {
-                cwk_log("SwatchLayout rows already set", category: .popover)
+                cw_log("SwatchLayout rows already set", category: .popover)
                 return
             }
 

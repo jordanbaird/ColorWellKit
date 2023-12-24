@@ -277,9 +277,9 @@ extension _CWColorWellBaseControl {
 private extension NSColorWell {
     @nonobjc static let swizzler: () = {
         let originalActivateSel = #selector(activate)
-        let swizzledActivateSel = #selector(cwk_swizzled_activate)
+        let swizzledActivateSel = #selector(cw_swizzled_activate)
         let originalDeactivateSel = #selector(deactivate)
-        let swizzledDeactivateSel = #selector(cwk_swizzled_deactivate)
+        let swizzledDeactivateSel = #selector(cw_swizzled_deactivate)
 
         guard
             let originalActivateMethod = class_getInstanceMethod(NSColorWell.self, originalActivateSel),
@@ -296,7 +296,7 @@ private extension NSColorWell {
 
     // MARK: Activate
 
-    @objc private func cwk_swizzled_activate(_ exclusive: Bool) {
+    @objc private func cw_swizzled_activate(_ exclusive: Bool) {
         // important that we capture the last attached object and its color
         // BEFORE activating and attaching, so we know what color to take
         let lastAttachedObject = NSColorPanel.shared.attachedObjects.last
@@ -308,7 +308,7 @@ private extension NSColorWell {
 
         // NOTE: since this method and the original have been swizzled,
         // a call to this method is actually a call to the original
-        cwk_swizzled_activate(exclusive)
+        cw_swizzled_activate(exclusive)
 
         // attach to match CWColorWell's behavior
         NSColorPanel.shared.attach(self)
@@ -327,10 +327,10 @@ private extension NSColorWell {
 
     // MARK: Deactivate
 
-    @objc private func cwk_swizzled_deactivate() {
+    @objc private func cw_swizzled_deactivate() {
         // NOTE: since this method and the original have been swizzled,
         // a call to this method is actually a call to the original
-        cwk_swizzled_deactivate()
+        cw_swizzled_deactivate()
 
         // detach to match CWColorWell's behavior
         NSColorPanel.shared.detach(self)

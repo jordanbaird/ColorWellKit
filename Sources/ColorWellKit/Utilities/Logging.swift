@@ -37,6 +37,6 @@ extension LogCategory {
 }
 
 /// Sends a message to the logging system using the given category and log level.
-func cwk_log(_ message: String, category: LogCategory = .main, type: OSLogType = .default) {
+func cw_log(_ message: String, category: LogCategory = .main, type: OSLogType = .default) {
     os_log("%@", log: category.log, type: type, message)
 }
