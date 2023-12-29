@@ -18,20 +18,6 @@ extension CGRect {
         copy.origin.y = other.midY - copy.height / 2
         return copy
     }
-
-    /// Returns a rectangle that has been inset by the given dimension.
-    func inset(by dimension: CGFloat) -> CGRect {
-        insetBy(dx: dimension, dy: dimension)
-    }
-}
-
-// MARK: Comparable
-extension Comparable {
-    /// Returns a value that is the result of clamping the current value to
-    /// the given limiting range.
-    func clamped(to limits: ClosedRange<Self>) -> Self {
-        min(max(self, limits.lowerBound), limits.upperBound)
-    }
 }
 
 // MARK: NSColor
@@ -73,44 +59,6 @@ extension NSColor {
         let a = takeFirstComponent(from: &iterator) ?? 1
 
         self.init(srgbRed: r, green: g, blue: b, alpha: a)
-    }
-
-    /// Creates a new color object whose component values are a weighted sum
-    /// of the current and specified color objects.
-    ///
-    /// This method converts both colors to RGB before blending. If either
-    /// color is unable to be converted, this method returns the current color
-    /// unaltered.
-    ///
-    /// - Parameters:
-    ///   - fraction: The amount of `color` to blend with the current color.
-    ///   - color: The color to blend with the current color.
-    ///
-    /// - Returns: The blended color, if successful. If either color is unable
-    ///   to be converted, the current color is returned unaltered.
-    func blending(fraction: CGFloat, of color: NSColor) -> NSColor {
-        guard
-            let color1 = usingColorSpace(.genericRGB),
-            let color2 = color.usingColorSpace(.genericRGB)
-        else {
-            return self
-        }
-
-        var (r1, g1, b1, a1): (CGFloat, CGFloat, CGFloat, CGFloat) = (0, 0, 0, 0)
-        var (r2, g2, b2, a2): (CGFloat, CGFloat, CGFloat, CGFloat) = (0, 0, 0, 0)
-
-        color1.getRed(&r1, green: &g1, blue: &b1, alpha: &a1)
-        color2.getRed(&r2, green: &g2, blue: &b2, alpha: &a2)
-
-        let clampedFraction = fraction.clamped(to: 0...1)
-        let inverseFraction = 1 - clampedFraction
-
-        let r = (r1 * inverseFraction).addingProduct(r2, clampedFraction)
-        let g = (g1 * inverseFraction).addingProduct(g2, clampedFraction)
-        let b = (b1 * inverseFraction).addingProduct(b2, clampedFraction)
-        let a = (a1 * inverseFraction).addingProduct(a2, clampedFraction)
-
-        return NSColor(calibratedRed: r, green: g, blue: b, alpha: a)
     }
 
     /// Returns a Boolean value that indicates whether this color resembles

@@ -76,8 +76,8 @@ class CWColorWellSegment: NSView {
     /// The fill color for a highlighted color well segment.
     var highlightedSegmentColor: NSColor {
         switch ColorScheme.current {
-        case .light: segmentColor.blending(fraction: 0.5, of: .selectedControlColor)
-        case .dark: segmentColor.blending(fraction: 0.2, of: .highlightColor)
+        case .light: segmentColor.blended(withFraction: 0.5, of: .selectedControlColor) ?? segmentColor
+        case .dark: segmentColor.blended(withFraction: 0.2, of: .highlightColor) ?? segmentColor
         }
     }
 
@@ -433,7 +433,7 @@ class CWBorderedSwatchSegment: CWSwatchSegment {
 
     override var borderColor: NSColor {
         switch ColorScheme.current {
-        case .light: super.borderColor.blending(fraction: 0.25, of: .controlTextColor)
+        case .light: super.borderColor.blended(withFraction: 0.25, of: .controlTextColor) ?? super.borderColor
         case .dark: super.borderColor
         }
     }
@@ -454,25 +454,26 @@ class CWBorderedSwatchSegment: CWSwatchSegment {
 
         segmentPath(bounds).fill(with: bezelColor)
 
-        let (inset, radius) = with(colorWell?.controlSize ?? .regular) { controlSize in
-            let standardInset: CGFloat = 3
-            let standardRadius: CGFloat = 2
-            return switch controlSize {
-            case .large:
-                (standardInset + 0.25, standardRadius + 0.2)
-            case .regular:
-                (standardInset, standardRadius)
-            case .small:
-                (standardInset - 0.75, standardRadius - 0.6)
-            case .mini:
-                (standardInset - 1, standardRadius - 0.8)
-            @unknown default:
-                (standardInset, standardRadius)
-            }
+        var inset: CGFloat = 3
+        var radius: CGFloat = 2
+        switch colorWell?.controlSize {
+        case .large:
+            inset += 0.25
+            radius += 0.2
+        case .regular, .none:
+            break // no change
+        case .small:
+            inset -= 0.75
+            radius -= 0.6
+        case .mini:
+            inset -= 1
+            radius -= 0.8
+        @unknown default:
+            break
         }
 
         let clippingPath = NSBezierPath(
-            roundedRect: bounds.inset(by: inset),
+            roundedRect: bounds.insetBy(dx: inset, dy: inset),
             xRadius: radius,
             yRadius: radius
         )
@@ -607,7 +608,8 @@ class CWPullDownSwatchSegment: CWSwatchSegment {
                 width: bgDimension,
                 height: bgDimension
             )
-            let caretBounds = with((bgDimension - lineWidth) / sizeFactor) { dimension in
+            let caretBounds: NSRect = {
+                let dimension = (bgDimension - lineWidth) / sizeFactor
                 let size = NSSize(
                     width: dimension,
                     height: dimension / 2
@@ -617,7 +619,7 @@ class CWPullDownSwatchSegment: CWSwatchSegment {
                     y: bgBounds.midY - (size.height / 2) - (lineWidth / 4)
                 )
                 return NSRect(origin: origin, size: size)
-            }
+            }()
 
             return (bgBounds, caretBounds, lineWidth)
         }()
