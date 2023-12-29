@@ -6,7 +6,7 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
-/// A view that displays a user-selectable color value.
+/// A SwiftUI view that displays a user-selectable color value.
 @available(macOS 10.15, *)
 public struct ColorWell<Label: View>: View {
     @Binding private var selection: NSColor

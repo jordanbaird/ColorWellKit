@@ -2,8 +2,6 @@
 
 Color wells provide an interface in your app for users to select custom colors. A color well displays the currently selected color, and provides options for selecting new colors. There are a number of styles to choose from, letting you customize the color well's appearance and behavior.
 
-By default, color wells support colors with opacity. To disable opacity support, set the `supportsOpacity` parameter to `false`. In this mode, the color well won't show controls for adjusting the opacity of the selected color, and removes opacity from colors set programmatically or selected using another method, like drag-and-drop.
-
 You create a color well by providing a title string and a `Binding` to a `Color`:
 
 ```swift
@@ -21,6 +19,14 @@ struct TextFormatter: View {
 ```
 
 ![Two color wells, both displayed in the default style](default-style)
+
+By default, color wells support colors with opacity. To disable opacity support, set the `supportsOpacity` parameter to `false`.
+
+```swift
+ColorWell("Foreground", selection: $fgColor, supportsOpacity: false)
+```
+
+In this mode, the color well does not show controls for adjusting the opacity of the selected color, and removes opacity from colors set programmatically or selected using another method, like drag-and-drop.
 
 ### Styling color wells
 

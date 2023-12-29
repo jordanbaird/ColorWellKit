@@ -5,7 +5,7 @@
 
 import AppKit
 
-/// A control that displays a user-selectable color value.
+/// A Cocoa control that displays a user-selectable color value.
 public class CWColorWell: _CWColorWellBaseControl {
 
     // MARK: Static Properties
