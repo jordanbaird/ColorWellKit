@@ -14,6 +14,7 @@ Color wells provide an interface in your app for users to select custom colors. 
 ### Configuring the color well
 
 - ``allowsMultipleSelection``
+- ``colorPanelMode``
 - ``delegate``
 - ``secondaryAction``
 - ``secondaryTarget``
