@@ -68,30 +68,24 @@ class CWColorWellSegment: NSView {
     /// The default fill color for a color well segment.
     var segmentColor: NSColor {
         switch ColorScheme.current {
-        case .light:
-            return .controlColor
-        case .dark:
-            return .selectedControlColor
+        case .light: .controlColor
+        case .dark: .selectedControlColor
         }
     }
 
     /// The fill color for a highlighted color well segment.
     var highlightedSegmentColor: NSColor {
         switch ColorScheme.current {
-        case .light:
-            return segmentColor.blending(fraction: 0.5, of: .selectedControlColor)
-        case .dark:
-            return segmentColor.blending(fraction: 0.2, of: .highlightColor)
+        case .light: segmentColor.blending(fraction: 0.5, of: .selectedControlColor)
+        case .dark: segmentColor.blending(fraction: 0.2, of: .highlightColor)
         }
     }
 
     /// The fill color for a selected color well segment.
     var selectedSegmentColor: NSColor {
         switch ColorScheme.current {
-        case .light:
-            return .selectedControlColor
-        case .dark:
-            return segmentColor.withAlphaComponent(segmentColor.alphaComponent + 0.25)
+        case .light: .selectedControlColor
+        case .dark: segmentColor.withAlphaComponent(segmentColor.alphaComponent + 0.25)
         }
     }
 
@@ -289,13 +283,12 @@ class CWSwatchSegment: CWColorWellSegment {
     var draggingInformation = DraggingInformation()
 
     var borderColor: NSColor {
-        with(displayColor) { displayColor in
-            let component = min(displayColor.averageBrightness, displayColor.alphaComponent)
-            let limitedComponent = min(component, 0.3)
-            let white = 1 - limitedComponent
-            let alpha = min(limitedComponent * 1.3, 0.7)
-            return NSColor(white: white, alpha: alpha)
-        }
+        let displayColor = displayColor
+        let component = min(displayColor.averageBrightness, displayColor.alphaComponent)
+        let limitedComponent = min(component, 0.3)
+        let white = 1 - limitedComponent
+        let alpha = min(limitedComponent * 1.3, 0.7)
+        return NSColor(white: white, alpha: alpha)
     }
 
     override var rawColor: NSColor {
@@ -440,10 +433,8 @@ class CWBorderedSwatchSegment: CWSwatchSegment {
 
     override var borderColor: NSColor {
         switch ColorScheme.current {
-        case .light:
-            super.borderColor.blending(fraction: 0.25, of: .controlTextColor)
-        case .dark:
-            super.borderColor
+        case .light: super.borderColor.blending(fraction: 0.25, of: .controlTextColor)
+        case .dark: super.borderColor
         }
     }
 
@@ -481,7 +472,7 @@ class CWBorderedSwatchSegment: CWSwatchSegment {
         }
 
         let clippingPath = NSBezierPath(
-            roundedRect: bounds.insetBy(inset),
+            roundedRect: bounds.inset(by: inset),
             xRadius: radius,
             yRadius: radius
         )
@@ -739,19 +730,13 @@ class CWToggleSegment: CWColorWellSegment {
             }
         }()
 
-        static let enabledImageForDarkAppearance = defaultImage
-            .tinted(to: .white, fraction: 1 / 3)
+        static let enabledImageForDarkAppearance = defaultImage.tinted(to: .white, fraction: 1 / 3)
 
-        static let enabledImageForLightAppearance = defaultImage
-            .tinted(to: .black, fraction: 1 / 5)
+        static let enabledImageForLightAppearance = defaultImage.tinted(to: .black, fraction: 1 / 5)
 
-        static let disabledImageForDarkAppearance = defaultImage
-            .tinted(to: .gray, fraction: 1 / 3)
-            .opacity(0.5)
+        static let disabledImageForDarkAppearance = defaultImage.tinted(to: .gray, fraction: 1 / 3).withOpacity(0.5)
 
-        static let disabledImageForLightAppearance = defaultImage
-            .tinted(to: .gray, fraction: 1 / 5)
-            .opacity(0.5)
+        static let disabledImageForLightAppearance = defaultImage.tinted(to: .gray, fraction: 1 / 5).withOpacity(0.5)
     }
 
     static let widthConstant: CGFloat = 20

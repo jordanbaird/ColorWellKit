@@ -181,7 +181,7 @@ class CWColorWellLayoutView: NSGridView {
             .nsBezierPath()
         case .default, .minimal:
             bezelPath = Path.fullColorWellPath(
-                rect: bounds.insetBy(lineWidth / 2),
+                rect: bounds.inset(by: lineWidth / 2),
                 controlSize: colorWell.controlSize
             )
             .stroked(lineWidth: lineWidth)

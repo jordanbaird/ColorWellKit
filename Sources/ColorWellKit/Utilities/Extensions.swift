@@ -20,7 +20,7 @@ extension CGRect {
     }
 
     /// Returns a rectangle that has been inset by the given dimension.
-    func insetBy(_ dimension: CGFloat) -> CGRect {
+    func inset(by dimension: CGFloat) -> CGRect {
         insetBy(dx: dimension, dy: dimension)
     }
 }
@@ -348,7 +348,7 @@ extension NSImage {
     /// Returns an image by redrawing the current image with the given opacity.
     ///
     /// - Parameter opacity: The opacity of the returned image.
-    func opacity(_ opacity: CGFloat) -> NSImage {
+    func withOpacity(_ opacity: CGFloat) -> NSImage {
         if opacity >= 1 {
             return self
         }
