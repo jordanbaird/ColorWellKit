@@ -43,6 +43,7 @@ class CWColorWellPopover: NSPopover, NSPopoverDelegate {
 }
 
 // MARK: - ContentViewController
+
 extension CWColorWellPopover {
     private class ContentViewController: NSViewController {
         let contentView: ContentView
@@ -61,6 +62,7 @@ extension CWColorWellPopover {
 }
 
 // MARK: - ContentView
+
 extension CWColorWellPopover {
     private class ContentView: NSView {
         let layoutView: LayoutView
@@ -107,6 +109,7 @@ extension CWColorWellPopover {
 }
 
 // MARK: - LayoutView
+
 extension CWColorWellPopover {
     private class LayoutView: NSGridView {
         private weak var colorWell: CWColorWell?
@@ -146,6 +149,7 @@ extension CWColorWellPopover {
 }
 
 // MARK: - SwatchLayout
+
 extension CWColorWellPopover {
     private class SwatchLayout: NSGridView {
         private let selectionIndicator = SelectionIndicator()
@@ -267,6 +271,7 @@ extension CWColorWellPopover {
 }
 
 // MARK: - SelectionIndicator
+
 extension CWColorWellPopover {
     private class SelectionIndicator: NSView {
         override init(frame frameRect: NSRect) {
@@ -296,6 +301,7 @@ extension CWColorWellPopover {
 }
 
 // MARK: - ColorSwatch
+
 extension CWColorWellPopover {
     private class ColorSwatch: NSView {
         private weak var colorWell: CWColorWell?

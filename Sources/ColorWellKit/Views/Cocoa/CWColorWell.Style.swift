@@ -32,13 +32,10 @@ extension CWColorWell {
 extension CWColorWell.Style: CustomStringConvertible {
     public var description: String {
         let prefix = String(describing: Self.self) + "."
-        switch self {
-        case .default:
-            return prefix + "default"
-        case .minimal:
-            return prefix + "minimal"
-        case .expanded:
-            return prefix + "expanded"
+        return switch self {
+        case .default: prefix + "default"
+        case .minimal: prefix + "minimal"
+        case .expanded: prefix + "expanded"
         }
     }
 }

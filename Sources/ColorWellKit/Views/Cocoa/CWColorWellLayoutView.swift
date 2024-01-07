@@ -13,8 +13,6 @@ private extension LayoutAnchorProtocol {
     }
 }
 
-extension NSLayoutAnchor: LayoutAnchorProtocol { }
-
 private struct LayoutAnchorKey: Hashable {
     private let rawValue: Int
 
@@ -22,6 +20,8 @@ private struct LayoutAnchorKey: Hashable {
         self.rawValue = base.hashValue
     }
 }
+
+extension NSLayoutAnchor: LayoutAnchorProtocol { }
 
 /// A grid view that displays color well segments side by side.
 class CWColorWellLayoutView: NSGridView {
