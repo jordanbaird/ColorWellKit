@@ -27,9 +27,7 @@ public class CWColorWell: _CWColorWellBaseControl {
 
     // MARK: Instance Properties
 
-    private let exclusivityLock = NSRecursiveLock()
-
-    private var isExclusive = true
+    private let exclusivity = LockedState(initialState: true)
 
     private var popover: NSPopover?
 
@@ -143,7 +141,7 @@ public class CWColorWell: _CWColorWellBaseControl {
                 }
             }
             if shouldActivate {
-                if isExclusive && allowsMultipleSelection {
+                if exclusivity.state && allowsMultipleSelection {
                     NSColorPanel.shared.enforceExclusivity(of: self)
                 }
                 NSColorPanel.shared.attach(self)
@@ -213,25 +211,22 @@ public class CWColorWell: _CWColorWellBaseControl {
     /// Until the color well is activated again, changes to the color panel will not
     /// affect the color well's state.
     public func deactivate() {
-        withExclusivityLock(isExclusive) { isActive = false }
+        withExclusivityLock(exclusivity.state) { isActive = false }
     }
 
     // MARK: Private/Internal Instance Methods
 
     /// Performs the given closure while locking the exclusivity of the color well
     /// to the given state in a thread-safe manner.
-    private func withExclusivityLock<T>(
-        _ isExclusive: @autoclosure () -> Bool,
-        body: () throws -> T
-    ) rethrows -> T {
-        exclusivityLock.lock()
-        let cachedIsExclusive = self.isExclusive
-        self.isExclusive = isExclusive()
-        defer {
-            self.isExclusive = cachedIsExclusive
-            exclusivityLock.unlock()
+    private func withExclusivityLock<T>(_ isExclusive: Bool, body: () throws -> T) rethrows -> T {
+        try exclusivity.withLock { state in
+            let cachedState = state
+            state = isExclusive
+            defer {
+                state = cachedState
+            }
+            return try body()
         }
-        return try body()
     }
 
     @objc(deactivate) // exposed to Objective-C as `deactivate`
