@@ -10,8 +10,6 @@ public class CWColorWell: _CWColorWellBaseControl {
 
     // MARK: Static Properties
 
-    private static let popoverStorage = ObjectAssociation<CWColorWellPopover>()
-
     /// Hexadecimal strings used to construct the default colors shown
     /// in a color well's popover.
     private static let defaultHexStrings = [
@@ -32,6 +30,8 @@ public class CWColorWell: _CWColorWellBaseControl {
     private let exclusivityLock = NSRecursiveLock()
 
     private var isExclusive = true
+
+    private var popover: NSPopover?
 
     /// The color well's delegate object.
     public weak var delegate: CWColorWellDelegate?
@@ -255,7 +255,7 @@ public class CWColorWell: _CWColorWellBaseControl {
     /// - Returns: `true` on success, `false` otherwise.
     @discardableResult
     func makeAndShowPopover(relativeTo segment: CWColorWellSegment) -> Bool {
-        if Self.popoverStorage[self] != nil {
+        if popover != nil {
             // a popover is already being shown
             return false
         }
@@ -264,19 +264,18 @@ public class CWColorWell: _CWColorWellBaseControl {
         }
         let popover = CWColorWellPopover(colorWell: self)
 
-        // the popover is removed from storage when it is closed; we use the
-        // presence of the popover to determine whether the next call to this
-        // method should succeed or fail
-        Self.popoverStorage[self] = popover
+        // the popover is set to `nil` when it is closed; we use its presence to
+        // determine whether the next call to this method should succeed or fail
+        self.popover = popover
 
         popover.show(relativeTo: segment.frame, of: segment, preferredEdge: .minY)
         return true
     }
 
-    /// Closes and removes the color well's popover from storage.
+    /// Closes and sets the color well's popover to `nil`.
     func freePopover() {
-        Self.popoverStorage[self]?.close()
-        Self.popoverStorage[self] = nil
+        popover?.close()
+        popover = nil
     }
 
     // MARK: Overridden Instance Methods
